@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" >
+        <EntityTypeShape EntityType="XModel.DrugSuply" Width="1.5" PointX="8.25" PointY="3.75" />
+        <EntityTypeShape EntityType="XModel.DrugSuplier" Width="1.5" PointX="5.125" PointY="3.375" />
+        <EntityTypeShape EntityType="XModel.DrugDistributor" Width="1.875" PointX="11.75" PointY="3.375" />
+        <EntityTypeShape EntityType="XModel.SystemUser" Width="1.5" PointX="8.375" PointY="0.875" />
+        <InheritanceConnector EntityType="XModel.DrugSuplier" />
+        <InheritanceConnector EntityType="XModel.DrugDistributor" />
+        <AssociationConnector Association="XModel.DrugDealersDrugSuplies" />
+        <AssociationConnector Association="XModel.DrugDistributorsDrugSuplies" />
+        <EntityTypeShape EntityType="XModel.Region" Width="1.5" PointX="12.5" PointY="6.625" />
+        <InheritanceConnector EntityType="XModel.DrugDistributor" />
+        <AssociationConnector Association="XModel.RegionDrugDistributor" />
+        <EntityTypeShape EntityType="XModel.Drug" Width="1.5" PointX="5" PointY="5.625" />
+        <AssociationConnector Association="XModel.DrugSuplyDrug" />
+        <EntityTypeShape EntityType="XModel.UnitsIOfMeasurement" Width="1.5" PointX="3.375" PointY="9.625" />
+        <AssociationConnector Association="XModel.DrugUnitsIOfMeasurement" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="XModel.RegionDrugPrice" Width="1.375" PointX="8.25" PointY="9.75" />
+        <AssociationConnector Association="XModel.RegionDrugPriceDrug" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="XModel.RegionDrugPriceUnitsIOfMeasurement" />
+        <AssociationConnector Association="XModel.RegionDrugPriceRegion" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="XModel.RegionDrugNeed" Width="1.5" PointX="8.25" PointY="6.75" />
+        <AssociationConnector Association="XModel.RegionDrugNeedRegion" />
+        <AssociationConnector Association="XModel.RegionDrugNeedDrug" />
+        <AssociationConnector Association="XModel.RegionDrugNeedUnitsIOfMeasurement" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
