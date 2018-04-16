@@ -141,6 +141,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\XModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -155,11 +159,17 @@
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-3.3.1.js" />
     <Content Include="scripts\jquery-3.3.1.min.js" />
     <Content Include="scripts\jquery-3.3.1.slim.js" />
     <Content Include="scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\vue.js" />
     <Content Include="scripts\vue.min.js" />
     <Content Include="Web.config" />
@@ -167,6 +177,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\DistributorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SuplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +243,11 @@
     </Content>
     <Content Include="scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Distributor\Index.cshtml" />
+    <Content Include="Views\Suplier\Index.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -238,7 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
