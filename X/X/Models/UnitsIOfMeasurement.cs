@@ -18,6 +18,7 @@ namespace X.Models
         public UnitsIOfMeasurement()
         {
             this.Drugs = new HashSet<Drug>();
+            this.DrugSuply = new HashSet<DrugSuply>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace X.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Drug> Drugs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrugSuply> DrugSuply { get; set; }
     }
 }

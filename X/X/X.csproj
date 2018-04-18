@@ -162,6 +162,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\DrugSuplies\SupliesTable.coffee" />
     <None Include="scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -178,9 +179,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
-    <Compile Include="Controllers\DistributorController.cs" />
+    <Compile Include="Controllers\DistributorsController.cs" />
+    <Compile Include="Controllers\DrugSupliesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SuplierController.cs" />
+    <Compile Include="Controllers\SupliersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

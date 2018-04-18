@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" >
-        <EntityTypeShape EntityType="XModel.DrugSuply" Width="1.5" PointX="8.25" PointY="3.75" />
+        <EntityTypeShape EntityType="XModel.DrugSuply" Width="1.5" PointX="8.25" PointY="3.375" />
         <EntityTypeShape EntityType="XModel.DrugSuplier" Width="1.5" PointX="5.125" PointY="3.375" />
         <EntityTypeShape EntityType="XModel.DrugDistributor" Width="1.875" PointX="11.75" PointY="3.375" />
         <EntityTypeShape EntityType="XModel.SystemUser" Width="1.5" PointX="8.375" PointY="0.875" />
@@ -31,6 +31,7 @@
         <AssociationConnector Association="XModel.RegionDrugNeedRegion" />
         <AssociationConnector Association="XModel.RegionDrugNeedDrug" />
         <AssociationConnector Association="XModel.RegionDrugNeedUnitsIOfMeasurement" />
+        <AssociationConnector Association="XModel.UnitsIOfMeasurementDrugSuply" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

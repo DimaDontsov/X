@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace X.Controllers
 {
-    public class SuplierController : Controller
+    public class DistributorsController : Controller
     {
-        // GET: Suplier
+        // GET: Distributor
         public ActionResult Index()
         {
             return View();

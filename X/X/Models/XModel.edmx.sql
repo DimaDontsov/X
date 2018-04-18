@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/16/2018 22:56:53
+-- Date Created: 04/18/2018 08:50:36
 -- Generated from EDMX file: J:\X\X\X\X\Models\XModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,92 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_DrugDealersDrugSuplies]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugDealersDrugSuplies];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugDistributorsDrugSuplies]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugDistributorsDrugSuplies];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugDistributor_Region]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugDistributor] DROP CONSTRAINT [FK_RegionDrugDistributor_Region];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugDistributor_DrugDistributor]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugDistributor] DROP CONSTRAINT [FK_RegionDrugDistributor_DrugDistributor];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugSuplyDrug]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugSuplyDrug];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugUnitsIOfMeasurement_Drug]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugUnitsIOfMeasurement] DROP CONSTRAINT [FK_DrugUnitsIOfMeasurement_Drug];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugUnitsIOfMeasurement] DROP CONSTRAINT [FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceDrug]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceDrug];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceUnitsIOfMeasurement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceUnitsIOfMeasurement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceRegion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceRegion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedRegion]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedRegion];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedDrug]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedDrug];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedUnitsIOfMeasurement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedUnitsIOfMeasurement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UnitsIOfMeasurementDrugSuply]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_UnitsIOfMeasurementDrugSuply];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugSuplier_inherits_SystemUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SystemUserSet_DrugSuplier] DROP CONSTRAINT [FK_DrugSuplier_inherits_SystemUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugDistributor_inherits_SystemUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SystemUserSet_DrugDistributor] DROP CONSTRAINT [FK_DrugDistributor_inherits_SystemUser];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[DrugSuplySet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugSuplySet];
+GO
+IF OBJECT_ID(N'[dbo].[SystemUserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SystemUserSet];
+GO
+IF OBJECT_ID(N'[dbo].[RegionSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionSet];
+GO
+IF OBJECT_ID(N'[dbo].[DrugSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugSet];
+GO
+IF OBJECT_ID(N'[dbo].[UnitsIOfMeasurementSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UnitsIOfMeasurementSet];
+GO
+IF OBJECT_ID(N'[dbo].[RegionDrugPriceSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionDrugPriceSet];
+GO
+IF OBJECT_ID(N'[dbo].[RegionDrugNeedSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionDrugNeedSet];
+GO
+IF OBJECT_ID(N'[dbo].[SystemUserSet_DrugSuplier]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SystemUserSet_DrugSuplier];
+GO
+IF OBJECT_ID(N'[dbo].[SystemUserSet_DrugDistributor]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SystemUserSet_DrugDistributor];
+GO
+IF OBJECT_ID(N'[dbo].[RegionDrugDistributor]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RegionDrugDistributor];
+GO
+IF OBJECT_ID(N'[dbo].[DrugUnitsIOfMeasurement]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugUnitsIOfMeasurement];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,10 +112,12 @@ GO
 CREATE TABLE [dbo].[DrugSuplySet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DrugSuplierId] int  NOT NULL,
-    [DrugDistributorsId] int  NOT NULL,
+    [DrugDistributorsId] int  NULL,
     [Price] bigint  NOT NULL,
     [DeliveryTime] datetime  NOT NULL,
-    [DrugId] int  NOT NULL
+    [DrugId] int  NOT NULL,
+    [Count] int  NOT NULL,
+    [UnitsIOfMeasurementId] int  NOT NULL
 );
 GO
 
@@ -44,7 +127,7 @@ CREATE TABLE [dbo].[SystemUserSet] (
     [Name] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
     [Login] nvarchar(max)  NOT NULL,
-    [Photo] varbinary(max)  NOT NULL
+    [Photo] varbinary(max)  NULL
 );
 GO
 
@@ -372,6 +455,21 @@ GO
 CREATE INDEX [IX_FK_RegionDrugNeedUnitsIOfMeasurement]
 ON [dbo].[RegionDrugNeedSet]
     ([UnitsOfMeasurementId]);
+GO
+
+-- Creating foreign key on [UnitsIOfMeasurementId] in table 'DrugSuplySet'
+ALTER TABLE [dbo].[DrugSuplySet]
+ADD CONSTRAINT [FK_UnitsIOfMeasurementDrugSuply]
+    FOREIGN KEY ([UnitsIOfMeasurementId])
+    REFERENCES [dbo].[UnitsIOfMeasurementSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UnitsIOfMeasurementDrugSuply'
+CREATE INDEX [IX_FK_UnitsIOfMeasurementDrugSuply]
+ON [dbo].[DrugSuplySet]
+    ([UnitsIOfMeasurementId]);
 GO
 
 -- Creating foreign key on [Id] in table 'SystemUserSet_DrugSuplier'

@@ -5,3 +5,19 @@
 
 <h2>View</h2>
 
+<table id="suplies-table">
+    <thead>
+        <tr>
+            <td> Название</td>
+            <td> Стоимость</td>
+            <td> Количество</td>
+            <td> Продавец</td>
+        </tr>
+    </thead>
+    <tr v-for="suply in suplies">
+        <td> suply.DrugName </td>
+        <td> suply.Cost </td>
+        <td> suply.Count </td>
+        <td> suply.SuplierName </td>
+    </tr>
+</table>
