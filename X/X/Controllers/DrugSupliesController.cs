@@ -1,55 +1,118 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Data.Entity;
-
+using System.Web.Http.Description;
 using X.Models;
-
-namespace X.Models
-{
-    public partial class DrugSuply
-        {
-            public string SuplierName { get { return DrugSuplier.Name; } }
-            public string UnitsIOfMeasurementShotrName { get { return this.UnitsIOfMeasurement.ShortName; } }
-            public string DrugName { get { return Drug.Name; } }
-        };
-}
 
 namespace X.Controllers
 {
-    
-
     public class DrugSupliesController : ApiController
     {
-        public List<DrugSuply> GetAll() => 
-            new XModelContainer().DrugSuplySet.ToList();
-        
-        public void Post(DrugSuply suply)
-        {
-            var db = new XModelContainer();
-            db.DrugSuplySet.Add(suply);
-            db.SaveChanges();
-        }
-        
-        public void Delete(int suplyId)
-        {
-            var db = new XModelContainer();
-            db.DrugSuplySet.Remove(db.DrugSuplySet.Find(suplyId));
-            db.SaveChanges();
+        private XModelContainer db = new XModelContainer();
 
+        // GET: api/DrugSuplies
+        public IQueryable<DrugSuply> GetDrugSuplySet()
+        {
+            return db.DrugSuplySet;
         }
 
-        public void Put(DrugSuply suply)
+        // GET: api/DrugSuplies/5
+        [ResponseType(typeof(DrugSuply))]
+        public IHttpActionResult GetDrugSuply(int id)
         {
-            var db = new XModelContainer();
-            db.Entry(suply).State = EntityState.Modified;
-            db.SaveChanges();
+            DrugSuply drugSuply = db.DrugSuplySet.Find(id);
+            if (drugSuply == null)
+            {
+                return NotFound();
+            }
 
+            return Ok(drugSuply);
         }
 
+        // PUT: api/DrugSuplies/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutDrugSuply(int id, DrugSuply drugSuply)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            if (id != drugSuply.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(drugSuply).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DrugSuplyExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/DrugSuplies
+        [ResponseType(typeof(DrugSuply))]
+        public IHttpActionResult PostDrugSuply(DrugSuply drugSuply)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.DrugSuplySet.Add(drugSuply);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = drugSuply.Id }, drugSuply);
+        }
+
+        // DELETE: api/DrugSuplies/5
+        [ResponseType(typeof(DrugSuply))]
+        public IHttpActionResult DeleteDrugSuply(int id)
+        {
+            DrugSuply drugSuply = db.DrugSuplySet.Find(id);
+            if (drugSuply == null)
+            {
+                return NotFound();
+            }
+
+            db.DrugSuplySet.Remove(drugSuply);
+            db.SaveChanges();
+
+            return Ok(drugSuply);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool DrugSuplyExists(int id)
+        {
+            return db.DrugSuplySet.Count(e => e.Id == id) > 0;
+        }
     }
 }

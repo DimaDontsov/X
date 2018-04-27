@@ -16,16 +16,14 @@ namespace X.Models
     {
         public int Id { get; set; }
         public int DrugSuplierId { get; set; }
-        public Nullable<int> DrugDistributorsId { get; set; }
         public long Price { get; set; }
         public System.DateTime DeliveryTime { get; set; }
         public int DrugId { get; set; }
         public int Count { get; set; }
-        public int UnitsIOfMeasurementId { get; set; }
+        public int UnitsOfMeasurementId { get; set; }
     
         public virtual DrugSuplier DrugSuplier { get; set; }
-        public virtual DrugDistributor DrugDistributors { get; set; }
         public virtual Drug Drug { get; set; }
-        public virtual UnitsIOfMeasurement UnitsIOfMeasurement { get; set; }
+        public virtual UnitsOfMeasurement UnitsOfMeasurement { get; set; }
     }
 }

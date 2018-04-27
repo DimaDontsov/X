@@ -12,24 +12,22 @@ namespace X.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class UnitsOfMeasurement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
+        public UnitsOfMeasurement()
         {
-            this.DrugDistributor = new HashSet<DrugDistributor>();
-            this.RegionDrugPrices = new HashSet<RegionDrugPrice>();
-            this.RegionDrugNeeds = new HashSet<RegionDrugNeed>();
+            this.Drugs = new HashSet<Drug>();
+            this.DrugSuply = new HashSet<DrugSuply>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ShortName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugDistributor> DrugDistributor { get; set; }
+        public virtual ICollection<Drug> Drugs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegionDrugPrice> RegionDrugPrices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegionDrugNeed> RegionDrugNeeds { get; set; }
+        public virtual ICollection<DrugSuply> DrugSuply { get; set; }
     }
 }

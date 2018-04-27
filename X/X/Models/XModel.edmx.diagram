@@ -4,34 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" >
+      <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" ZoomLevel="82" >
         <EntityTypeShape EntityType="XModel.DrugSuply" Width="1.5" PointX="8.25" PointY="3.375" />
-        <EntityTypeShape EntityType="XModel.DrugSuplier" Width="1.5" PointX="5.125" PointY="3.375" />
-        <EntityTypeShape EntityType="XModel.DrugDistributor" Width="1.875" PointX="11.75" PointY="3.375" />
-        <EntityTypeShape EntityType="XModel.SystemUser" Width="1.5" PointX="8.375" PointY="0.875" />
+        <EntityTypeShape EntityType="XModel.DrugSuplier" Width="1.5" PointX="2.625" PointY="3.375" />
+        <EntityTypeShape EntityType="XModel.DrugDistributor" Width="1.875" PointX="14.625" PointY="3.375" />
+        <EntityTypeShape EntityType="XModel.SystemUser" Width="1.5" PointX="8.375" PointY="0.5" />
         <InheritanceConnector EntityType="XModel.DrugSuplier" />
         <InheritanceConnector EntityType="XModel.DrugDistributor" />
         <AssociationConnector Association="XModel.DrugDealersDrugSuplies" />
-        <AssociationConnector Association="XModel.DrugDistributorsDrugSuplies" />
-        <EntityTypeShape EntityType="XModel.Region" Width="1.5" PointX="12.5" PointY="6.625" />
         <InheritanceConnector EntityType="XModel.DrugDistributor" />
-        <AssociationConnector Association="XModel.RegionDrugDistributor" />
-        <EntityTypeShape EntityType="XModel.Drug" Width="1.5" PointX="5" PointY="5.625" />
+        <EntityTypeShape EntityType="XModel.Drug" Width="1.5" PointX="5.25" PointY="5.875" />
         <AssociationConnector Association="XModel.DrugSuplyDrug" />
-        <EntityTypeShape EntityType="XModel.UnitsIOfMeasurement" Width="1.5" PointX="3.375" PointY="9.625" />
+        <EntityTypeShape EntityType="XModel.UnitsOfMeasurement" Width="1.5" PointX="2.125" PointY="5.875" />
         <AssociationConnector Association="XModel.DrugUnitsIOfMeasurement" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="XModel.RegionDrugPrice" Width="1.375" PointX="8.25" PointY="9.75" />
-        <AssociationConnector Association="XModel.RegionDrugPriceDrug" ManuallyRouted="false" >
-        </AssociationConnector>
-        <AssociationConnector Association="XModel.RegionDrugPriceUnitsIOfMeasurement" />
-        <AssociationConnector Association="XModel.RegionDrugPriceRegion" ManuallyRouted="false" >
-        </AssociationConnector>
-        <EntityTypeShape EntityType="XModel.RegionDrugNeed" Width="1.5" PointX="8.25" PointY="6.75" />
-        <AssociationConnector Association="XModel.RegionDrugNeedRegion" />
-        <AssociationConnector Association="XModel.RegionDrugNeedDrug" />
-        <AssociationConnector Association="XModel.RegionDrugNeedUnitsIOfMeasurement" />
         <AssociationConnector Association="XModel.UnitsIOfMeasurementDrugSuply" />
+        <EntityTypeShape EntityType="XModel.BoughtDrugSuply" Width="1.5" PointX="10.875" PointY="3.875" />
+        <InheritanceConnector EntityType="XModel.BoughtDrugSuply" />
+        <AssociationConnector Association="XModel.DrugDistributorBoughtDrugSuply" />
+        <EntityTypeShape EntityType="XModel.DrugPack" Width="1.5" PointX="10.875" PointY="6" />
+        <AssociationConnector Association="XModel.BoughtDrugSuplyDrugPack" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

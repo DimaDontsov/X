@@ -12,16 +12,15 @@ namespace X.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RegionDrugPrice
+    public partial class DrugPack
     {
         public int Id { get; set; }
-        public int RegionId { get; set; }
-        public int DrugId { get; set; }
-        public long CostForUnit { get; set; }
-        public int UnitsOfMeasurementId { get; set; }
+        public int BoughtDrugSuplyId { get; set; }
+        public string CoordX { get; set; }
+        public string CoordY { get; set; }
+        public int Count { get; set; }
+        public int Price { get; set; }
     
-        public virtual Drug Drug { get; set; }
-        public virtual UnitsIOfMeasurement UnitsIOfMeasurement { get; set; }
-        public virtual Region Region { get; set; }
+        public virtual BoughtDrugSuply BoughtDrugSuply { get; set; }
     }
 }

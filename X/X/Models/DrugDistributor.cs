@@ -17,15 +17,11 @@ namespace X.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DrugDistributor()
         {
-            this.DrugSuplies = new HashSet<DrugSuply>();
-            this.Region = new HashSet<Region>();
+            this.BoughtDrugSuplies = new HashSet<BoughtDrugSuply>();
         }
     
-        public int RegionId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugSuply> DrugSuplies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Region> Region { get; set; }
+        public virtual ICollection<BoughtDrugSuply> BoughtDrugSuplies { get; set; }
     }
 }

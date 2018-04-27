@@ -6,7 +6,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
+    <!-- <link href="~/Content/styles/templatemo_style.css" rel="stylesheet" type="text/css" /> -->
+    <link rel="stylesheet" href="~/Content/styles/style.css">
+    @Styles.Render("~/Content/styles/style.css")
 
     @{
         var serverUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
@@ -14,9 +19,17 @@
 </head>
 <body>
 
-    <script>
-        window.ServerUrl = '@serverUrl';
-    </script>
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <!--<script src="~/scripts/jquery-3.3.1.slim.js"></script>-->
+    <script src="~/scripts/jquery.dropdown.js"></script>
+    <script src="~/scripts/jquery.maskedinput.min.js"></script>
+    <script src="~/scripts/vue.min.js"></script>
+    <script src="~/scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+
+    
+
+   
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -41,7 +54,6 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
 </body>
 </html>

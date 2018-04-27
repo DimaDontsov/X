@@ -27,10 +27,8 @@ namespace X.Models
     
         public virtual DbSet<DrugSuply> DrugSuplySet { get; set; }
         public virtual DbSet<SystemUser> SystemUserSet { get; set; }
-        public virtual DbSet<Region> RegionSet { get; set; }
         public virtual DbSet<Drug> DrugSet { get; set; }
-        public virtual DbSet<UnitsIOfMeasurement> UnitsIOfMeasurementSet { get; set; }
-        public virtual DbSet<RegionDrugPrice> RegionDrugPriceSet { get; set; }
-        public virtual DbSet<RegionDrugNeed> RegionDrugNeedSet { get; set; }
+        public virtual DbSet<UnitsOfMeasurement> UnitsOfMeasurementSet { get; set; }
+        public virtual DbSet<DrugPack> DrugPackSet { get; set; }
     }
 }

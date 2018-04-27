@@ -14,10 +14,18 @@ namespace X.Models
     
     public partial class SystemUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SystemUser()
+        {
+            this.Balance = 0;
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Login { get; set; }
         public byte[] Photo { get; set; }
+        public long Balance { get; set; }
+        public string SessionKey { get; set; }
     }
 }

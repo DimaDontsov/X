@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/18/2018 08:50:36
--- Generated from EDMX file: J:\X\X\X\X\Models\XModel.edmx
+-- Date Created: 04/27/2018 05:37:12
+-- Generated from EDMX file: D:\_Study\labs\ITManagment\X\X\X\X\Models\XModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -20,15 +20,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DrugDealersDrugSuplies]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugDealersDrugSuplies];
 GO
-IF OBJECT_ID(N'[dbo].[FK_DrugDistributorsDrugSuplies]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugDistributorsDrugSuplies];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugDistributor_Region]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugDistributor] DROP CONSTRAINT [FK_RegionDrugDistributor_Region];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugDistributor_DrugDistributor]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugDistributor] DROP CONSTRAINT [FK_RegionDrugDistributor_DrugDistributor];
-GO
 IF OBJECT_ID(N'[dbo].[FK_DrugSuplyDrug]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_DrugSuplyDrug];
 GO
@@ -38,32 +29,23 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DrugUnitsIOfMeasurement] DROP CONSTRAINT [FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceDrug]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceDrug];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceUnitsIOfMeasurement]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceUnitsIOfMeasurement];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugPriceRegion]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugPriceSet] DROP CONSTRAINT [FK_RegionDrugPriceRegion];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedRegion]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedRegion];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedDrug]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedDrug];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RegionDrugNeedUnitsIOfMeasurement]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RegionDrugNeedSet] DROP CONSTRAINT [FK_RegionDrugNeedUnitsIOfMeasurement];
-GO
 IF OBJECT_ID(N'[dbo].[FK_UnitsIOfMeasurementDrugSuply]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DrugSuplySet] DROP CONSTRAINT [FK_UnitsIOfMeasurementDrugSuply];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugDistributorBoughtDrugSuply]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply] DROP CONSTRAINT [FK_DrugDistributorBoughtDrugSuply];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BoughtDrugSuplyDrugPack]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugPackSet] DROP CONSTRAINT [FK_BoughtDrugSuplyDrugPack];
 GO
 IF OBJECT_ID(N'[dbo].[FK_DrugSuplier_inherits_SystemUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SystemUserSet_DrugSuplier] DROP CONSTRAINT [FK_DrugSuplier_inherits_SystemUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_DrugDistributor_inherits_SystemUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SystemUserSet_DrugDistributor] DROP CONSTRAINT [FK_DrugDistributor_inherits_SystemUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BoughtDrugSuply_inherits_DrugSuply]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply] DROP CONSTRAINT [FK_BoughtDrugSuply_inherits_DrugSuply];
 GO
 
 -- --------------------------------------------------
@@ -76,20 +58,14 @@ GO
 IF OBJECT_ID(N'[dbo].[SystemUserSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SystemUserSet];
 GO
-IF OBJECT_ID(N'[dbo].[RegionSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RegionSet];
-GO
 IF OBJECT_ID(N'[dbo].[DrugSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DrugSet];
 GO
 IF OBJECT_ID(N'[dbo].[UnitsIOfMeasurementSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UnitsIOfMeasurementSet];
 GO
-IF OBJECT_ID(N'[dbo].[RegionDrugPriceSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RegionDrugPriceSet];
-GO
-IF OBJECT_ID(N'[dbo].[RegionDrugNeedSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RegionDrugNeedSet];
+IF OBJECT_ID(N'[dbo].[DrugPackSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugPackSet];
 GO
 IF OBJECT_ID(N'[dbo].[SystemUserSet_DrugSuplier]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SystemUserSet_DrugSuplier];
@@ -97,8 +73,8 @@ GO
 IF OBJECT_ID(N'[dbo].[SystemUserSet_DrugDistributor]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SystemUserSet_DrugDistributor];
 GO
-IF OBJECT_ID(N'[dbo].[RegionDrugDistributor]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RegionDrugDistributor];
+IF OBJECT_ID(N'[dbo].[DrugSuplySet_BoughtDrugSuply]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugSuplySet_BoughtDrugSuply];
 GO
 IF OBJECT_ID(N'[dbo].[DrugUnitsIOfMeasurement]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DrugUnitsIOfMeasurement];
@@ -112,12 +88,11 @@ GO
 CREATE TABLE [dbo].[DrugSuplySet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [DrugSuplierId] int  NOT NULL,
-    [DrugDistributorsId] int  NULL,
     [Price] bigint  NOT NULL,
     [DeliveryTime] datetime  NOT NULL,
     [DrugId] int  NOT NULL,
     [Count] int  NOT NULL,
-    [UnitsIOfMeasurementId] int  NOT NULL
+    [UnitsOfMeasurementId] int  NOT NULL
 );
 GO
 
@@ -127,14 +102,9 @@ CREATE TABLE [dbo].[SystemUserSet] (
     [Name] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
     [Login] nvarchar(max)  NOT NULL,
-    [Photo] varbinary(max)  NULL
-);
-GO
-
--- Creating table 'RegionSet'
-CREATE TABLE [dbo].[RegionSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Photo] varbinary(max)  NULL,
+    [Balance] bigint  NOT NULL,
+    [SessionKey] nvarchar(max)  NULL
 );
 GO
 
@@ -153,23 +123,14 @@ CREATE TABLE [dbo].[UnitsIOfMeasurementSet] (
 );
 GO
 
--- Creating table 'RegionDrugPriceSet'
-CREATE TABLE [dbo].[RegionDrugPriceSet] (
+-- Creating table 'DrugPackSet'
+CREATE TABLE [dbo].[DrugPackSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [RegionId] int  NOT NULL,
-    [DrugId] int  NOT NULL,
-    [CostForUnit] bigint  NOT NULL,
-    [UnitsOfMeasurementId] int  NOT NULL
-);
-GO
-
--- Creating table 'RegionDrugNeedSet'
-CREATE TABLE [dbo].[RegionDrugNeedSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [DrugId] int  NOT NULL,
-    [RegionId] int  NOT NULL,
+    [BoughtDrugSuplyId] int  NOT NULL,
+    [CoordX] nvarchar(max)  NOT NULL,
+    [CoordY] nvarchar(max)  NOT NULL,
     [Count] int  NOT NULL,
-    [UnitsOfMeasurementId] int  NOT NULL
+    [Price] int  NOT NULL
 );
 GO
 
@@ -181,22 +142,21 @@ GO
 
 -- Creating table 'SystemUserSet_DrugDistributor'
 CREATE TABLE [dbo].[SystemUserSet_DrugDistributor] (
-    [RegionId] int  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
--- Creating table 'RegionDrugDistributor'
-CREATE TABLE [dbo].[RegionDrugDistributor] (
-    [Region_Id] int  NOT NULL,
-    [DrugDistributor_Id] int  NOT NULL
+-- Creating table 'DrugSuplySet_BoughtDrugSuply'
+CREATE TABLE [dbo].[DrugSuplySet_BoughtDrugSuply] (
+    [DrugDistributorId] int  NOT NULL,
+    [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'DrugUnitsIOfMeasurement'
 CREATE TABLE [dbo].[DrugUnitsIOfMeasurement] (
     [Drugs_Id] int  NOT NULL,
-    [UnitsIOfMeasurement_Id] int  NOT NULL
+    [UnitsOfMeasurement_Id] int  NOT NULL
 );
 GO
 
@@ -216,12 +176,6 @@ ADD CONSTRAINT [PK_SystemUserSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'RegionSet'
-ALTER TABLE [dbo].[RegionSet]
-ADD CONSTRAINT [PK_RegionSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'DrugSet'
 ALTER TABLE [dbo].[DrugSet]
 ADD CONSTRAINT [PK_DrugSet]
@@ -234,15 +188,9 @@ ADD CONSTRAINT [PK_UnitsIOfMeasurementSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'RegionDrugPriceSet'
-ALTER TABLE [dbo].[RegionDrugPriceSet]
-ADD CONSTRAINT [PK_RegionDrugPriceSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'RegionDrugNeedSet'
-ALTER TABLE [dbo].[RegionDrugNeedSet]
-ADD CONSTRAINT [PK_RegionDrugNeedSet]
+-- Creating primary key on [Id] in table 'DrugPackSet'
+ALTER TABLE [dbo].[DrugPackSet]
+ADD CONSTRAINT [PK_DrugPackSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -258,16 +206,16 @@ ADD CONSTRAINT [PK_SystemUserSet_DrugDistributor]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Region_Id], [DrugDistributor_Id] in table 'RegionDrugDistributor'
-ALTER TABLE [dbo].[RegionDrugDistributor]
-ADD CONSTRAINT [PK_RegionDrugDistributor]
-    PRIMARY KEY CLUSTERED ([Region_Id], [DrugDistributor_Id] ASC);
+-- Creating primary key on [Id] in table 'DrugSuplySet_BoughtDrugSuply'
+ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply]
+ADD CONSTRAINT [PK_DrugSuplySet_BoughtDrugSuply]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Drugs_Id], [UnitsIOfMeasurement_Id] in table 'DrugUnitsIOfMeasurement'
+-- Creating primary key on [Drugs_Id], [UnitsOfMeasurement_Id] in table 'DrugUnitsIOfMeasurement'
 ALTER TABLE [dbo].[DrugUnitsIOfMeasurement]
 ADD CONSTRAINT [PK_DrugUnitsIOfMeasurement]
-    PRIMARY KEY CLUSTERED ([Drugs_Id], [UnitsIOfMeasurement_Id] ASC);
+    PRIMARY KEY CLUSTERED ([Drugs_Id], [UnitsOfMeasurement_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -287,45 +235,6 @@ GO
 CREATE INDEX [IX_FK_DrugDealersDrugSuplies]
 ON [dbo].[DrugSuplySet]
     ([DrugSuplierId]);
-GO
-
--- Creating foreign key on [DrugDistributorsId] in table 'DrugSuplySet'
-ALTER TABLE [dbo].[DrugSuplySet]
-ADD CONSTRAINT [FK_DrugDistributorsDrugSuplies]
-    FOREIGN KEY ([DrugDistributorsId])
-    REFERENCES [dbo].[SystemUserSet_DrugDistributor]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DrugDistributorsDrugSuplies'
-CREATE INDEX [IX_FK_DrugDistributorsDrugSuplies]
-ON [dbo].[DrugSuplySet]
-    ([DrugDistributorsId]);
-GO
-
--- Creating foreign key on [Region_Id] in table 'RegionDrugDistributor'
-ALTER TABLE [dbo].[RegionDrugDistributor]
-ADD CONSTRAINT [FK_RegionDrugDistributor_Region]
-    FOREIGN KEY ([Region_Id])
-    REFERENCES [dbo].[RegionSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [DrugDistributor_Id] in table 'RegionDrugDistributor'
-ALTER TABLE [dbo].[RegionDrugDistributor]
-ADD CONSTRAINT [FK_RegionDrugDistributor_DrugDistributor]
-    FOREIGN KEY ([DrugDistributor_Id])
-    REFERENCES [dbo].[SystemUserSet_DrugDistributor]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugDistributor_DrugDistributor'
-CREATE INDEX [IX_FK_RegionDrugDistributor_DrugDistributor]
-ON [dbo].[RegionDrugDistributor]
-    ([DrugDistributor_Id]);
 GO
 
 -- Creating foreign key on [DrugId] in table 'DrugSuplySet'
@@ -352,10 +261,10 @@ ADD CONSTRAINT [FK_DrugUnitsIOfMeasurement_Drug]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [UnitsIOfMeasurement_Id] in table 'DrugUnitsIOfMeasurement'
+-- Creating foreign key on [UnitsOfMeasurement_Id] in table 'DrugUnitsIOfMeasurement'
 ALTER TABLE [dbo].[DrugUnitsIOfMeasurement]
 ADD CONSTRAINT [FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement]
-    FOREIGN KEY ([UnitsIOfMeasurement_Id])
+    FOREIGN KEY ([UnitsOfMeasurement_Id])
     REFERENCES [dbo].[UnitsIOfMeasurementSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -364,103 +273,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement'
 CREATE INDEX [IX_FK_DrugUnitsIOfMeasurement_UnitsIOfMeasurement]
 ON [dbo].[DrugUnitsIOfMeasurement]
-    ([UnitsIOfMeasurement_Id]);
+    ([UnitsOfMeasurement_Id]);
 GO
 
--- Creating foreign key on [DrugId] in table 'RegionDrugPriceSet'
-ALTER TABLE [dbo].[RegionDrugPriceSet]
-ADD CONSTRAINT [FK_RegionDrugPriceDrug]
-    FOREIGN KEY ([DrugId])
-    REFERENCES [dbo].[DrugSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugPriceDrug'
-CREATE INDEX [IX_FK_RegionDrugPriceDrug]
-ON [dbo].[RegionDrugPriceSet]
-    ([DrugId]);
-GO
-
--- Creating foreign key on [UnitsOfMeasurementId] in table 'RegionDrugPriceSet'
-ALTER TABLE [dbo].[RegionDrugPriceSet]
-ADD CONSTRAINT [FK_RegionDrugPriceUnitsIOfMeasurement]
-    FOREIGN KEY ([UnitsOfMeasurementId])
-    REFERENCES [dbo].[UnitsIOfMeasurementSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugPriceUnitsIOfMeasurement'
-CREATE INDEX [IX_FK_RegionDrugPriceUnitsIOfMeasurement]
-ON [dbo].[RegionDrugPriceSet]
-    ([UnitsOfMeasurementId]);
-GO
-
--- Creating foreign key on [RegionId] in table 'RegionDrugPriceSet'
-ALTER TABLE [dbo].[RegionDrugPriceSet]
-ADD CONSTRAINT [FK_RegionDrugPriceRegion]
-    FOREIGN KEY ([RegionId])
-    REFERENCES [dbo].[RegionSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugPriceRegion'
-CREATE INDEX [IX_FK_RegionDrugPriceRegion]
-ON [dbo].[RegionDrugPriceSet]
-    ([RegionId]);
-GO
-
--- Creating foreign key on [RegionId] in table 'RegionDrugNeedSet'
-ALTER TABLE [dbo].[RegionDrugNeedSet]
-ADD CONSTRAINT [FK_RegionDrugNeedRegion]
-    FOREIGN KEY ([RegionId])
-    REFERENCES [dbo].[RegionSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugNeedRegion'
-CREATE INDEX [IX_FK_RegionDrugNeedRegion]
-ON [dbo].[RegionDrugNeedSet]
-    ([RegionId]);
-GO
-
--- Creating foreign key on [DrugId] in table 'RegionDrugNeedSet'
-ALTER TABLE [dbo].[RegionDrugNeedSet]
-ADD CONSTRAINT [FK_RegionDrugNeedDrug]
-    FOREIGN KEY ([DrugId])
-    REFERENCES [dbo].[DrugSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugNeedDrug'
-CREATE INDEX [IX_FK_RegionDrugNeedDrug]
-ON [dbo].[RegionDrugNeedSet]
-    ([DrugId]);
-GO
-
--- Creating foreign key on [UnitsOfMeasurementId] in table 'RegionDrugNeedSet'
-ALTER TABLE [dbo].[RegionDrugNeedSet]
-ADD CONSTRAINT [FK_RegionDrugNeedUnitsIOfMeasurement]
-    FOREIGN KEY ([UnitsOfMeasurementId])
-    REFERENCES [dbo].[UnitsIOfMeasurementSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RegionDrugNeedUnitsIOfMeasurement'
-CREATE INDEX [IX_FK_RegionDrugNeedUnitsIOfMeasurement]
-ON [dbo].[RegionDrugNeedSet]
-    ([UnitsOfMeasurementId]);
-GO
-
--- Creating foreign key on [UnitsIOfMeasurementId] in table 'DrugSuplySet'
+-- Creating foreign key on [UnitsOfMeasurementId] in table 'DrugSuplySet'
 ALTER TABLE [dbo].[DrugSuplySet]
 ADD CONSTRAINT [FK_UnitsIOfMeasurementDrugSuply]
-    FOREIGN KEY ([UnitsIOfMeasurementId])
+    FOREIGN KEY ([UnitsOfMeasurementId])
     REFERENCES [dbo].[UnitsIOfMeasurementSet]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -469,7 +288,37 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UnitsIOfMeasurementDrugSuply'
 CREATE INDEX [IX_FK_UnitsIOfMeasurementDrugSuply]
 ON [dbo].[DrugSuplySet]
-    ([UnitsIOfMeasurementId]);
+    ([UnitsOfMeasurementId]);
+GO
+
+-- Creating foreign key on [DrugDistributorId] in table 'DrugSuplySet_BoughtDrugSuply'
+ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply]
+ADD CONSTRAINT [FK_DrugDistributorBoughtDrugSuply]
+    FOREIGN KEY ([DrugDistributorId])
+    REFERENCES [dbo].[SystemUserSet_DrugDistributor]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DrugDistributorBoughtDrugSuply'
+CREATE INDEX [IX_FK_DrugDistributorBoughtDrugSuply]
+ON [dbo].[DrugSuplySet_BoughtDrugSuply]
+    ([DrugDistributorId]);
+GO
+
+-- Creating foreign key on [BoughtDrugSuplyId] in table 'DrugPackSet'
+ALTER TABLE [dbo].[DrugPackSet]
+ADD CONSTRAINT [FK_BoughtDrugSuplyDrugPack]
+    FOREIGN KEY ([BoughtDrugSuplyId])
+    REFERENCES [dbo].[DrugSuplySet_BoughtDrugSuply]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BoughtDrugSuplyDrugPack'
+CREATE INDEX [IX_FK_BoughtDrugSuplyDrugPack]
+ON [dbo].[DrugPackSet]
+    ([BoughtDrugSuplyId]);
 GO
 
 -- Creating foreign key on [Id] in table 'SystemUserSet_DrugSuplier'
@@ -486,6 +335,15 @@ ALTER TABLE [dbo].[SystemUserSet_DrugDistributor]
 ADD CONSTRAINT [FK_DrugDistributor_inherits_SystemUser]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[SystemUserSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'DrugSuplySet_BoughtDrugSuply'
+ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply]
+ADD CONSTRAINT [FK_BoughtDrugSuply_inherits_DrugSuply]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[DrugSuplySet]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO

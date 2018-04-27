@@ -8,30 +8,16 @@
   <EntityContainer Name="XModelStoreContainer">
     <EntitySet Name="DrugSuplySet" EntityType="XModel.Store.DrugSuplySet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserSet" EntityType="XModel.Store.SystemUserSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RegionSet" EntityType="XModel.Store.RegionSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DrugSet" EntityType="XModel.Store.DrugSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UnitsIOfMeasurementSet" EntityType="XModel.Store.UnitsIOfMeasurementSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RegionDrugPriceSet" EntityType="XModel.Store.RegionDrugPriceSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RegionDrugNeedSet" EntityType="XModel.Store.RegionDrugNeedSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DrugPackSet" EntityType="XModel.Store.DrugPackSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserSet_DrugSuplier" EntityType="XModel.Store.SystemUserSet_DrugSuplier" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserSet_DrugDistributor" EntityType="XModel.Store.SystemUserSet_DrugDistributor" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RegionDrugDistributor" EntityType="XModel.Store.RegionDrugDistributor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DrugSuplySet_BoughtDrugSuply" EntityType="XModel.Store.DrugSuplySet_BoughtDrugSuply" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DrugUnitsIOfMeasurement" EntityType="XModel.Store.DrugUnitsIOfMeasurement" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="DrugDealersDrugSuplies" Association="XModel.Store.DrugDealersDrugSuplies">
       <End Role="DrugDealers" EntitySet="SystemUserSet_DrugSuplier" />
       <End Role="DrugSuplies" EntitySet="DrugSuplySet" />
-    </AssociationSet>
-    <AssociationSet Name="DrugDistributorsDrugSuplies" Association="XModel.Store.DrugDistributorsDrugSuplies">
-      <End Role="DrugDistributors" EntitySet="SystemUserSet_DrugDistributor" />
-      <End Role="DrugSuplies" EntitySet="DrugSuplySet" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RegionDrugDistributor_Region" Association="XModel.Store.FK_RegionDrugDistributor_Region">
-      <End Role="Region" EntitySet="RegionSet" />
-      <End Role="RegionDrugDistributor" EntitySet="RegionDrugDistributor" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RegionDrugDistributor_DrugDistributor" Association="XModel.Store.FK_RegionDrugDistributor_DrugDistributor">
-      <End Role="DrugDistributor" EntitySet="SystemUserSet_DrugDistributor" />
-      <End Role="RegionDrugDistributor" EntitySet="RegionDrugDistributor" />
     </AssociationSet>
     <AssociationSet Name="DrugSuplyDrug" Association="XModel.Store.DrugSuplyDrug">
       <End Role="DrugSuply" EntitySet="DrugSuplySet" />
@@ -45,33 +31,17 @@
       <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
       <End Role="DrugUnitsIOfMeasurement" EntitySet="DrugUnitsIOfMeasurement" />
     </AssociationSet>
-    <AssociationSet Name="RegionDrugPriceDrug" Association="XModel.Store.RegionDrugPriceDrug">
-      <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-      <End Role="Drug" EntitySet="DrugSet" />
-    </AssociationSet>
-    <AssociationSet Name="RegionDrugPriceUnitsIOfMeasurement" Association="XModel.Store.RegionDrugPriceUnitsIOfMeasurement">
-      <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-      <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
-    </AssociationSet>
-    <AssociationSet Name="RegionDrugPriceRegion" Association="XModel.Store.RegionDrugPriceRegion">
-      <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-      <End Role="Region" EntitySet="RegionSet" />
-    </AssociationSet>
-    <AssociationSet Name="RegionDrugNeedRegion" Association="XModel.Store.RegionDrugNeedRegion">
-      <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-      <End Role="Region" EntitySet="RegionSet" />
-    </AssociationSet>
-    <AssociationSet Name="RegionDrugNeedDrug" Association="XModel.Store.RegionDrugNeedDrug">
-      <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-      <End Role="Drug" EntitySet="DrugSet" />
-    </AssociationSet>
-    <AssociationSet Name="RegionDrugNeedUnitsIOfMeasurement" Association="XModel.Store.RegionDrugNeedUnitsIOfMeasurement">
-      <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-      <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
-    </AssociationSet>
     <AssociationSet Name="UnitsIOfMeasurementDrugSuply" Association="XModel.Store.UnitsIOfMeasurementDrugSuply">
       <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
       <End Role="DrugSuply" EntitySet="DrugSuplySet" />
+    </AssociationSet>
+    <AssociationSet Name="DrugDistributorBoughtDrugSuply" Association="XModel.Store.DrugDistributorBoughtDrugSuply">
+      <End Role="DrugDistributor" EntitySet="SystemUserSet_DrugDistributor" />
+      <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet_BoughtDrugSuply" />
+    </AssociationSet>
+    <AssociationSet Name="BoughtDrugSuplyDrugPack" Association="XModel.Store.BoughtDrugSuplyDrugPack">
+      <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet_BoughtDrugSuply" />
+      <End Role="DrugPack" EntitySet="DrugPackSet" />
     </AssociationSet>
     <AssociationSet Name="FK_DrugSuplier_inherits_SystemUser" Association="XModel.Store.FK_DrugSuplier_inherits_SystemUser">
       <End Role="SystemUser" EntitySet="SystemUserSet" />
@@ -81,6 +51,10 @@
       <End Role="SystemUser" EntitySet="SystemUserSet" />
       <End Role="DrugDistributor" EntitySet="SystemUserSet_DrugDistributor" />
     </AssociationSet>
+    <AssociationSet Name="FK_BoughtDrugSuply_inherits_DrugSuply" Association="XModel.Store.FK_BoughtDrugSuply_inherits_DrugSuply">
+      <End Role="DrugSuply" EntitySet="DrugSuplySet" />
+      <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet_BoughtDrugSuply" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DrugSuplySet">
     <Key>
@@ -88,12 +62,11 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DrugSuplierId" Type="int" Nullable="false" />
-    <Property Name="DrugDistributorsId" Type="int" Nullable="true" />
     <Property Name="Price" Type="bigint" Nullable="false" />
     <Property Name="DeliveryTime" Type="datetime" Nullable="false" />
     <Property Name="DrugId" Type="int" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
-    <Property Name="UnitsIOfMeasurementId" Type="int" Nullable="false" />
+    <Property Name="UnitsOfMeasurementId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SystemUserSet">
     <Key>
@@ -104,13 +77,8 @@
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Photo" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="RegionSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Balance" Type="bigint" Nullable="false" DefaultValue="0" />
+    <Property Name="SessionKey" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="DrugSet">
     <Key>
@@ -127,25 +95,16 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="RegionDrugPriceSet">
+  <EntityType Name="DrugPackSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RegionId" Type="int" Nullable="false" />
-    <Property Name="DrugId" Type="int" Nullable="false" />
-    <Property Name="CostForUnit" Type="bigint" Nullable="false" />
-    <Property Name="UnitsOfMeasurementId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="RegionDrugNeedSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DrugId" Type="int" Nullable="false" />
-    <Property Name="RegionId" Type="int" Nullable="false" />
+    <Property Name="BoughtDrugSuplyId" Type="int" Nullable="false" />
+    <Property Name="CoordX" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CoordY" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
-    <Property Name="UnitsOfMeasurementId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SystemUserSet_DrugSuplier">
     <Key>
@@ -157,24 +116,22 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="RegionId" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="RegionDrugDistributor">
+  <EntityType Name="DrugSuplySet_BoughtDrugSuply">
     <Key>
-      <PropertyRef Name="Region_Id" />
-      <PropertyRef Name="DrugDistributor_Id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Region_Id" Type="int" Nullable="false" />
-    <Property Name="DrugDistributor_Id" Type="int" Nullable="false" />
+    <Property Name="DrugDistributorId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DrugUnitsIOfMeasurement">
     <Key>
       <PropertyRef Name="Drugs_Id" />
-      <PropertyRef Name="UnitsIOfMeasurement_Id" />
+      <PropertyRef Name="UnitsOfMeasurement_Id" />
     </Key>
     <Property Name="Drugs_Id" Type="int" Nullable="false" />
-    <Property Name="UnitsIOfMeasurement_Id" Type="int" Nullable="false" />
+    <Property Name="UnitsOfMeasurement_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="DrugDealersDrugSuplies">
     <End Role="DrugDealers" Type="XModel.Store.SystemUserSet_DrugSuplier" Multiplicity="1" />
@@ -185,18 +142,6 @@
       </Principal>
       <Dependent Role="DrugSuplies">
         <PropertyRef Name="DrugSuplierId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DrugDistributorsDrugSuplies">
-    <End Role="DrugDistributors" Type="XModel.Store.SystemUserSet_DrugDistributor" Multiplicity="0..1" />
-    <End Role="DrugSuplies" Type="XModel.Store.DrugSuplySet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DrugDistributors">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DrugSuplies">
-        <PropertyRef Name="DrugDistributorsId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -212,78 +157,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RegionDrugPriceDrug">
-    <End Role="RegionDrugPrice" Type="XModel.Store.RegionDrugPriceSet" Multiplicity="*" />
-    <End Role="Drug" Type="XModel.Store.DrugSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Drug">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugPrice">
-        <PropertyRef Name="DrugId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RegionDrugPriceUnitsIOfMeasurement">
-    <End Role="RegionDrugPrice" Type="XModel.Store.RegionDrugPriceSet" Multiplicity="*" />
-    <End Role="UnitsIOfMeasurement" Type="XModel.Store.UnitsIOfMeasurementSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="UnitsIOfMeasurement">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugPrice">
-        <PropertyRef Name="UnitsOfMeasurementId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RegionDrugPriceRegion">
-    <End Role="RegionDrugPrice" Type="XModel.Store.RegionDrugPriceSet" Multiplicity="*" />
-    <End Role="Region" Type="XModel.Store.RegionSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Region">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugPrice">
-        <PropertyRef Name="RegionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RegionDrugNeedRegion">
-    <End Role="RegionDrugNeed" Type="XModel.Store.RegionDrugNeedSet" Multiplicity="*" />
-    <End Role="Region" Type="XModel.Store.RegionSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Region">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugNeed">
-        <PropertyRef Name="RegionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RegionDrugNeedDrug">
-    <End Role="RegionDrugNeed" Type="XModel.Store.RegionDrugNeedSet" Multiplicity="*" />
-    <End Role="Drug" Type="XModel.Store.DrugSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Drug">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugNeed">
-        <PropertyRef Name="DrugId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RegionDrugNeedUnitsIOfMeasurement">
-    <End Role="RegionDrugNeed" Type="XModel.Store.RegionDrugNeedSet" Multiplicity="*" />
-    <End Role="UnitsIOfMeasurement" Type="XModel.Store.UnitsIOfMeasurementSet" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="UnitsIOfMeasurement">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugNeed">
-        <PropertyRef Name="UnitsOfMeasurementId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="UnitsIOfMeasurementDrugSuply">
     <End Role="UnitsIOfMeasurement" Type="XModel.Store.UnitsIOfMeasurementSet" Multiplicity="1" />
     <End Role="DrugSuply" Type="XModel.Store.DrugSuplySet" Multiplicity="*" />
@@ -292,31 +165,31 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DrugSuply">
-        <PropertyRef Name="UnitsIOfMeasurementId" />
+        <PropertyRef Name="UnitsOfMeasurementId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RegionDrugDistributor_Region">
-    <End Role="Region" Type="XModel.Store.RegionSet" Multiplicity="1" />
-    <End Role="RegionDrugDistributor" Type="XModel.Store.RegionDrugDistributor" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Region">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RegionDrugDistributor">
-        <PropertyRef Name="Region_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RegionDrugDistributor_DrugDistributor">
-    <End Role="RegionDrugDistributor" Type="XModel.Store.RegionDrugDistributor" Multiplicity="*" />
+  <Association Name="DrugDistributorBoughtDrugSuply">
     <End Role="DrugDistributor" Type="XModel.Store.SystemUserSet_DrugDistributor" Multiplicity="1" />
+    <End Role="BoughtDrugSuply" Type="XModel.Store.DrugSuplySet_BoughtDrugSuply" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DrugDistributor">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="RegionDrugDistributor">
-        <PropertyRef Name="DrugDistributor_Id" />
+      <Dependent Role="BoughtDrugSuply">
+        <PropertyRef Name="DrugDistributorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BoughtDrugSuplyDrugPack">
+    <End Role="BoughtDrugSuply" Type="XModel.Store.DrugSuplySet_BoughtDrugSuply" Multiplicity="1" />
+    <End Role="DrugPack" Type="XModel.Store.DrugPackSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoughtDrugSuply">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DrugPack">
+        <PropertyRef Name="BoughtDrugSuplyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -340,7 +213,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DrugUnitsIOfMeasurement">
-        <PropertyRef Name="UnitsIOfMeasurement_Id" />
+        <PropertyRef Name="UnitsOfMeasurement_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -372,6 +245,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_BoughtDrugSuply_inherits_DrugSuply">
+    <End Role="DrugSuply" Type="XModel.Store.DrugSuplySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BoughtDrugSuply" Type="XModel.Store.DrugSuplySet_BoughtDrugSuply" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DrugSuply">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BoughtDrugSuply">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -383,54 +270,28 @@
             <End Role="DrugDealers" EntitySet="SystemUserSet" />
             <End Role="DrugSuplies" EntitySet="DrugSuplySet" />
           </AssociationSet>
-          <AssociationSet Name="DrugDistributorsDrugSuplies" Association="XModel.DrugDistributorsDrugSuplies">
-            <End Role="DrugDistributors" EntitySet="SystemUserSet" />
-            <End Role="DrugSuplies" EntitySet="DrugSuplySet" />
-          </AssociationSet>
-          <EntitySet Name="RegionSet" EntityType="XModel.Region" />
-          <AssociationSet Name="RegionDrugDistributor" Association="XModel.RegionDrugDistributor">
-            <End Role="Region" EntitySet="RegionSet" />
-            <End Role="DrugDistributor" EntitySet="SystemUserSet" />
-          </AssociationSet>
           <EntitySet Name="DrugSet" EntityType="XModel.Drug" />
           <AssociationSet Name="DrugSuplyDrug" Association="XModel.DrugSuplyDrug">
             <End Role="DrugSuply" EntitySet="DrugSuplySet" />
             <End Role="Drug" EntitySet="DrugSet" />
           </AssociationSet>
-          <EntitySet Name="UnitsIOfMeasurementSet" EntityType="XModel.UnitsIOfMeasurement" />
+          <EntitySet Name="UnitsOfMeasurementSet" EntityType="XModel.UnitsOfMeasurement" />
           <AssociationSet Name="DrugUnitsIOfMeasurement" Association="XModel.DrugUnitsIOfMeasurement">
             <End Role="Drug" EntitySet="DrugSet" />
-            <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
-          </AssociationSet>
-          <EntitySet Name="RegionDrugPriceSet" EntityType="XModel.RegionDrugPrice" />
-          <AssociationSet Name="RegionDrugPriceDrug" Association="XModel.RegionDrugPriceDrug">
-            <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-            <End Role="Drug" EntitySet="DrugSet" />
-          </AssociationSet>
-          <AssociationSet Name="RegionDrugPriceUnitsIOfMeasurement" Association="XModel.RegionDrugPriceUnitsIOfMeasurement">
-            <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-            <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
-          </AssociationSet>
-          <AssociationSet Name="RegionDrugPriceRegion" Association="XModel.RegionDrugPriceRegion">
-            <End Role="RegionDrugPrice" EntitySet="RegionDrugPriceSet" />
-            <End Role="Region" EntitySet="RegionSet" />
-          </AssociationSet>
-          <EntitySet Name="RegionDrugNeedSet" EntityType="XModel.RegionDrugNeed" />
-          <AssociationSet Name="RegionDrugNeedRegion" Association="XModel.RegionDrugNeedRegion">
-            <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-            <End Role="Region" EntitySet="RegionSet" />
-          </AssociationSet>
-          <AssociationSet Name="RegionDrugNeedDrug" Association="XModel.RegionDrugNeedDrug">
-            <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-            <End Role="Drug" EntitySet="DrugSet" />
-          </AssociationSet>
-          <AssociationSet Name="RegionDrugNeedUnitsIOfMeasurement" Association="XModel.RegionDrugNeedUnitsIOfMeasurement">
-            <End Role="RegionDrugNeed" EntitySet="RegionDrugNeedSet" />
-            <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
+            <End Role="UnitsIOfMeasurement" EntitySet="UnitsOfMeasurementSet" />
           </AssociationSet>
           <AssociationSet Name="UnitsIOfMeasurementDrugSuply" Association="XModel.UnitsIOfMeasurementDrugSuply">
-            <End Role="UnitsIOfMeasurement" EntitySet="UnitsIOfMeasurementSet" />
+            <End Role="UnitsIOfMeasurement" EntitySet="UnitsOfMeasurementSet" />
             <End Role="DrugSuply" EntitySet="DrugSuplySet" />
+          </AssociationSet>
+          <AssociationSet Name="DrugDistributorBoughtDrugSuply" Association="XModel.DrugDistributorBoughtDrugSuply">
+            <End Role="DrugDistributor" EntitySet="SystemUserSet" />
+            <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet" />
+          </AssociationSet>
+          <EntitySet Name="DrugPackSet" EntityType="XModel.DrugPack" />
+          <AssociationSet Name="BoughtDrugSuplyDrugPack" Association="XModel.BoughtDrugSuplyDrugPack">
+            <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet" />
+            <End Role="DrugPack" EntitySet="DrugPackSet" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DrugSuply">
@@ -440,23 +301,19 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="DrugSuplier" Relationship="XModel.DrugDealersDrugSuplies" FromRole="DrugSuplies" ToRole="DrugDealers" />
           <Property Name="DrugSuplierId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DrugDistributors" Relationship="XModel.DrugDistributorsDrugSuplies" FromRole="DrugSuplies" ToRole="DrugDistributors" />
-          <Property Name="DrugDistributorsId" Type="Int32" Nullable="true" />
           <Property Name="Price" Type="Int64" Nullable="false" />
           <Property Name="DeliveryTime" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Drug" Relationship="XModel.DrugSuplyDrug" FromRole="DrugSuply" ToRole="Drug" />
           <Property Name="DrugId" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UnitsIOfMeasurement" Relationship="XModel.UnitsIOfMeasurementDrugSuply" FromRole="DrugSuply" ToRole="UnitsIOfMeasurement" />
-          <Property Name="UnitsIOfMeasurementId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnitsOfMeasurement" Relationship="XModel.UnitsIOfMeasurementDrugSuply" FromRole="DrugSuply" ToRole="UnitsIOfMeasurement" />
+          <Property Name="UnitsOfMeasurementId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DrugSuplier" BaseType="XModel.SystemUser">
           <NavigationProperty Name="DrugSuplies" Relationship="XModel.DrugDealersDrugSuplies" FromRole="DrugDealers" ToRole="DrugSuplies" />
         </EntityType>
         <EntityType Name="DrugDistributor" BaseType="XModel.SystemUser">
-          <NavigationProperty Name="DrugSuplies" Relationship="XModel.DrugDistributorsDrugSuplies" FromRole="DrugDistributors" ToRole="DrugSuplies" />
-          <Property Name="RegionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="XModel.RegionDrugDistributor" FromRole="DrugDistributor" ToRole="Region" />
+          <NavigationProperty Name="BoughtDrugSuplies" Relationship="XModel.DrugDistributorBoughtDrugSuply" FromRole="DrugDistributor" ToRole="BoughtDrugSuply" />
         </EntityType>
         <EntityType Name="SystemUser">
           <Key>
@@ -467,6 +324,8 @@
           <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Login" Type="String" Nullable="false" />
           <Property Name="Photo" Type="Binary" Nullable="true" />
+          <Property Name="Balance" Type="Int64" Nullable="false" DefaultValue="0" />
+          <Property Name="SessionKey" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="DrugDealersDrugSuplies">
           <End Type="XModel.DrugSuplier" Role="DrugDealers" Multiplicity="1" />
@@ -480,32 +339,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DrugDistributorsDrugSuplies">
-          <End Type="XModel.DrugDistributor" Role="DrugDistributors" Multiplicity="0..1" />
-          <End Type="XModel.DrugSuply" Role="DrugSuplies" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DrugDistributors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DrugSuplies">
-              <PropertyRef Name="DrugDistributorsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="DrugDistributor" Relationship="XModel.RegionDrugDistributor" FromRole="Region" ToRole="DrugDistributor" />
-          <NavigationProperty Name="RegionDrugPrices" Relationship="XModel.RegionDrugPriceRegion" FromRole="Region" ToRole="RegionDrugPrice" />
-          <NavigationProperty Name="RegionDrugNeeds" Relationship="XModel.RegionDrugNeedRegion" FromRole="Region" ToRole="RegionDrugNeed" />
-        </EntityType>
-        <Association Name="RegionDrugDistributor">
-          <End Type="XModel.Region" Role="Region" Multiplicity="*" />
-          <End Type="XModel.DrugDistributor" Role="DrugDistributor" Multiplicity="*" />
-        </Association>
         <EntityType Name="Drug">
           <Key>
             <PropertyRef Name="Id" />
@@ -513,9 +346,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="DrugSuply" Relationship="XModel.DrugSuplyDrug" FromRole="Drug" ToRole="DrugSuply" />
-          <NavigationProperty Name="UnitsIOfMeasurement" Relationship="XModel.DrugUnitsIOfMeasurement" FromRole="Drug" ToRole="UnitsIOfMeasurement" />
-          <NavigationProperty Name="RegionDrugPrice" Relationship="XModel.RegionDrugPriceDrug" FromRole="Drug" ToRole="RegionDrugPrice" />
-          <NavigationProperty Name="RegionDrugNeed" Relationship="XModel.RegionDrugNeedDrug" FromRole="Drug" ToRole="RegionDrugNeed" />
+          <NavigationProperty Name="UnitsOfMeasurement" Relationship="XModel.DrugUnitsIOfMeasurement" FromRole="Drug" ToRole="UnitsIOfMeasurement" />
         </EntityType>
         <Association Name="DrugSuplyDrug">
           <End Type="XModel.DrugSuply" Role="DrugSuply" Multiplicity="*" />
@@ -529,7 +360,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UnitsIOfMeasurement">
+        <EntityType Name="UnitsOfMeasurement">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -541,115 +372,58 @@
         </EntityType>
         <Association Name="DrugUnitsIOfMeasurement">
           <End Type="XModel.Drug" Role="Drug" Multiplicity="*" />
-          <End Type="XModel.UnitsIOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="*" />
-        </Association>
-        <EntityType Name="RegionDrugPrice">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegionId" Type="Int32" Nullable="false" />
-          <Property Name="DrugId" Type="Int32" Nullable="false" />
-          <Property Name="CostForUnit" Type="Int64" Nullable="false" />
-          <Property Name="UnitsOfMeasurementId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Drug" Relationship="XModel.RegionDrugPriceDrug" FromRole="RegionDrugPrice" ToRole="Drug" />
-          <NavigationProperty Name="UnitsIOfMeasurement" Relationship="XModel.RegionDrugPriceUnitsIOfMeasurement" FromRole="RegionDrugPrice" ToRole="UnitsIOfMeasurement" />
-          <NavigationProperty Name="Region" Relationship="XModel.RegionDrugPriceRegion" FromRole="RegionDrugPrice" ToRole="Region" />
-        </EntityType>
-        <Association Name="RegionDrugPriceDrug">
-          <End Type="XModel.RegionDrugPrice" Role="RegionDrugPrice" Multiplicity="*" />
-          <End Type="XModel.Drug" Role="Drug" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Drug">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugPrice">
-              <PropertyRef Name="DrugId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RegionDrugPriceUnitsIOfMeasurement">
-          <End Type="XModel.RegionDrugPrice" Role="RegionDrugPrice" Multiplicity="*" />
-          <End Type="XModel.UnitsIOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="UnitsIOfMeasurement">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugPrice">
-              <PropertyRef Name="UnitsOfMeasurementId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RegionDrugPriceRegion">
-          <End Type="XModel.RegionDrugPrice" Role="RegionDrugPrice" Multiplicity="*" />
-          <End Type="XModel.Region" Role="Region" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugPrice">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="RegionDrugNeed">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DrugId" Type="Int32" Nullable="false" />
-          <Property Name="RegionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="XModel.RegionDrugNeedRegion" FromRole="RegionDrugNeed" ToRole="Region" />
-          <NavigationProperty Name="Drug" Relationship="XModel.RegionDrugNeedDrug" FromRole="RegionDrugNeed" ToRole="Drug" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="UnitsOfMeasurementId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UnitsIOfMeasurement" Relationship="XModel.RegionDrugNeedUnitsIOfMeasurement" FromRole="RegionDrugNeed" ToRole="UnitsIOfMeasurement" />
-        </EntityType>
-        <Association Name="RegionDrugNeedRegion">
-          <End Type="XModel.RegionDrugNeed" Role="RegionDrugNeed" Multiplicity="*" />
-          <End Type="XModel.Region" Role="Region" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugNeed">
-              <PropertyRef Name="RegionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RegionDrugNeedDrug">
-          <End Type="XModel.RegionDrugNeed" Role="RegionDrugNeed" Multiplicity="*" />
-          <End Type="XModel.Drug" Role="Drug" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Drug">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugNeed">
-              <PropertyRef Name="DrugId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RegionDrugNeedUnitsIOfMeasurement">
-          <End Type="XModel.RegionDrugNeed" Role="RegionDrugNeed" Multiplicity="*" />
-          <End Type="XModel.UnitsIOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="UnitsIOfMeasurement">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RegionDrugNeed">
-              <PropertyRef Name="UnitsOfMeasurementId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="XModel.UnitsOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="*" />
         </Association>
         <Association Name="UnitsIOfMeasurementDrugSuply">
-          <End Type="XModel.UnitsIOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="1" />
+          <End Type="XModel.UnitsOfMeasurement" Role="UnitsIOfMeasurement" Multiplicity="1" />
           <End Type="XModel.DrugSuply" Role="DrugSuply" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UnitsIOfMeasurement">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DrugSuply">
-              <PropertyRef Name="UnitsIOfMeasurementId" />
+              <PropertyRef Name="UnitsOfMeasurementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BoughtDrugSuply" BaseType="XModel.DrugSuply" >
+          <NavigationProperty Name="DrugDistributor" Relationship="XModel.DrugDistributorBoughtDrugSuply" FromRole="BoughtDrugSuply" ToRole="DrugDistributor" />
+          <Property Name="DrugDistributorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DrugPacks" Relationship="XModel.BoughtDrugSuplyDrugPack" FromRole="BoughtDrugSuply" ToRole="DrugPack" />
+        </EntityType>
+        <Association Name="DrugDistributorBoughtDrugSuply">
+          <End Type="XModel.DrugDistributor" Role="DrugDistributor" Multiplicity="1" />
+          <End Type="XModel.BoughtDrugSuply" Role="BoughtDrugSuply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugDistributor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BoughtDrugSuply">
+              <PropertyRef Name="DrugDistributorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DrugPack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BoughtDrugSuply" Relationship="XModel.BoughtDrugSuplyDrugPack" FromRole="DrugPack" ToRole="BoughtDrugSuply" />
+          <Property Name="BoughtDrugSuplyId" Type="Int32" Nullable="false" />
+          <Property Name="CoordX" Type="String" Nullable="false" />
+          <Property Name="CoordY" Type="String" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="BoughtDrugSuplyDrugPack">
+          <End Type="XModel.BoughtDrugSuply" Role="BoughtDrugSuply" Multiplicity="1" />
+          <End Type="XModel.DrugPack" Role="DrugPack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BoughtDrugSuply">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DrugPack">
+              <PropertyRef Name="BoughtDrugSuplyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -664,12 +438,17 @@
         <MappingFragment StoreEntitySet="DrugSuplySet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DrugSuplierId" ColumnName="DrugSuplierId" />
-          <ScalarProperty Name="DrugDistributorsId" ColumnName="DrugDistributorsId" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
           <ScalarProperty Name="DrugId" ColumnName="DrugId" />
           <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="UnitsIOfMeasurementId" ColumnName="UnitsIOfMeasurementId" />
+          <ScalarProperty Name="UnitsOfMeasurementId" ColumnName="UnitsOfMeasurementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(XModel.BoughtDrugSuply)">
+        <MappingFragment StoreEntitySet="DrugSuplySet_BoughtDrugSuply">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DrugDistributorId" ColumnName="DrugDistributorId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -681,6 +460,8 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(XModel.DrugSuplier)">
@@ -691,15 +472,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(XModel.DrugDistributor)">
         <MappingFragment StoreEntitySet="SystemUserSet_DrugDistributor">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RegionSet">
-      <EntityTypeMapping TypeName="IsTypeOf(XModel.Region)">
-        <MappingFragment StoreEntitySet="RegionSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -711,8 +483,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UnitsIOfMeasurementSet">
-      <EntityTypeMapping TypeName="IsTypeOf(XModel.UnitsIOfMeasurement)">
+    <EntitySetMapping Name="UnitsOfMeasurementSet">
+      <EntityTypeMapping TypeName="IsTypeOf(XModel.UnitsOfMeasurement)">
         <MappingFragment StoreEntitySet="UnitsIOfMeasurementSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -720,42 +492,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RegionDrugPriceSet">
-      <EntityTypeMapping TypeName="IsTypeOf(XModel.RegionDrugPrice)">
-        <MappingFragment StoreEntitySet="RegionDrugPriceSet">
+    <EntitySetMapping Name="DrugPackSet">
+      <EntityTypeMapping TypeName="IsTypeOf(XModel.DrugPack)">
+        <MappingFragment StoreEntitySet="DrugPackSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
-          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
-          <ScalarProperty Name="CostForUnit" ColumnName="CostForUnit" />
-          <ScalarProperty Name="UnitsOfMeasurementId" ColumnName="UnitsOfMeasurementId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RegionDrugNeedSet">
-      <EntityTypeMapping TypeName="IsTypeOf(XModel.RegionDrugNeed)">
-        <MappingFragment StoreEntitySet="RegionDrugNeedSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
-          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="BoughtDrugSuplyId" ColumnName="BoughtDrugSuplyId" />
+          <ScalarProperty Name="CoordX" ColumnName="CoordX" />
+          <ScalarProperty Name="CoordY" ColumnName="CoordY" />
           <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="UnitsOfMeasurementId" ColumnName="UnitsOfMeasurementId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="RegionDrugDistributor" TypeName="XModel.RegionDrugDistributor" StoreEntitySet="RegionDrugDistributor">
-      <EndProperty Name="Region">
-        <ScalarProperty Name="Id" ColumnName="Region_Id" />
-      </EndProperty>
-      <EndProperty Name="DrugDistributor">
-        <ScalarProperty Name="Id" ColumnName="DrugDistributor_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="DrugUnitsIOfMeasurement" TypeName="XModel.DrugUnitsIOfMeasurement" StoreEntitySet="DrugUnitsIOfMeasurement">
       <EndProperty Name="Drug">
         <ScalarProperty Name="Id" ColumnName="Drugs_Id" />
       </EndProperty>
       <EndProperty Name="UnitsIOfMeasurement">
-        <ScalarProperty Name="Id" ColumnName="UnitsIOfMeasurement_Id" />
+        <ScalarProperty Name="Id" ColumnName="UnitsOfMeasurement_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
@@ -770,8 +524,8 @@
     </edmx:Connection>
     <edmx:Options>
       <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="ValidateOnBuild" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>

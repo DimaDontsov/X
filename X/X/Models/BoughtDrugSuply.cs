@@ -12,22 +12,18 @@ namespace X.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UnitsIOfMeasurement
+    public partial class BoughtDrugSuply : DrugSuply
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UnitsIOfMeasurement()
+        public BoughtDrugSuply()
         {
-            this.Drugs = new HashSet<Drug>();
-            this.DrugSuply = new HashSet<DrugSuply>();
+            this.DrugPacks = new HashSet<DrugPack>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ShortName { get; set; }
+        public int DrugDistributorId { get; set; }
     
+        public virtual DrugDistributor DrugDistributor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Drug> Drugs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugSuply> DrugSuply { get; set; }
+        public virtual ICollection<DrugPack> DrugPacks { get; set; }
     }
 }

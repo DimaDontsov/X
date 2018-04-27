@@ -8,7 +8,7 @@ namespace X.Controllers
 {
     public class SupliersController : Controller
     {
-        // GET: Suplier
+        // GET: Supliers
         public ActionResult Index()
         {
             return View();

@@ -18,9 +18,7 @@ namespace X.Models
         public Drug()
         {
             this.DrugSuply = new HashSet<DrugSuply>();
-            this.UnitsIOfMeasurement = new HashSet<UnitsIOfMeasurement>();
-            this.RegionDrugPrice = new HashSet<RegionDrugPrice>();
-            this.RegionDrugNeed = new HashSet<RegionDrugNeed>();
+            this.UnitsOfMeasurement = new HashSet<UnitsOfMeasurement>();
         }
     
         public int Id { get; set; }
@@ -29,10 +27,6 @@ namespace X.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DrugSuply> DrugSuply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UnitsIOfMeasurement> UnitsIOfMeasurement { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegionDrugPrice> RegionDrugPrice { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegionDrugNeed> RegionDrugNeed { get; set; }
+        public virtual ICollection<UnitsOfMeasurement> UnitsOfMeasurement { get; set; }
     }
 }
