@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<X.Models.DrugSuply>
 @{
     ViewBag.Title = "View";
     var loggedUser = TempData["LoggedUser"];
@@ -60,7 +60,7 @@
                 <label for="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сортировка</label>
                 <select name="sort">
                     <option>По возрастанию цены</option>
-                    <option>Ебать-копать</option>
+                    <option>По убыванию цены</option>
                 </select>
             </div>
 
@@ -73,20 +73,23 @@
                         <thead>
                             <tr>
                                 <th>Название</th>
-                                <th>Стоимость</th>
+                                <th>Стоимость, руб.</th>
                                 <th>Количество</th>
                                 <th>Продавец</th>
                                 <th>Время доставки</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Дима пидор</th>
-                                <th>даром</th>
-                                <th>2 шт.</th>
-                                <th>Санек</th>
-                                <th>пулей</th>
-                            </tr>
+                           
+                                <tr>
+                                    <th>Травка</th>
+                                    <th>1000</th>
+                                    <th>2 шт.</th>
+                                    <th>Крош</th>
+                                    <th>пулей</th>
+                                </tr>
+                            
+                            
 
                         </tbody>
                     </table>
@@ -108,8 +111,8 @@
                         <input type="text"></input>
                     </div>
                     <div align="center">
-                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;">
-                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;">
+                        <input type="button" value="Купить" style="width:30%; background-color:#C0C0C0;">
+                        <input type="button" value="Отмена" style="width:30%; background-color:#C0C0C0;">
                     </div>
                 </div>
             </div>

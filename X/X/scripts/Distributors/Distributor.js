@@ -11,6 +11,7 @@ vDistributorPage = new Vue({
         DrugSuplies: [],
         MyDrugSuplies: [],
         Packs: [],
+        AllDrugs: [],
         Mess: ""
     },
     methods: {
@@ -23,10 +24,16 @@ vDistributorPage = new Vue({
         fillDrugSuplies: function () {
 
         },
+        fillDrugs : function (){
+            var that = this;
+            $.get("/api/DrugSupliers/" + u, {}, function (data) {
+                that.$data.AllDrugs = data;
+            });
+        },
         fillPacks: function () {
             var that = this;
             $.get("/api/DrugDistributors/" + u, {}, function (data) {
-                that.$data.User = data;
+                that.$data.Packs = data;
             });
         },
         setUserId: function (u) {

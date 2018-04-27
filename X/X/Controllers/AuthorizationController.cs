@@ -17,6 +17,39 @@ namespace X.Controllers
             return View();
         }
 
+        public ActionResult Registration(string login, string password, string repeatPassword, string name, string cardNumber, bool isDistributor)
+        {
+            var db = new XModelContainer();
+            
+            ActionResult actionResult = Redirect("/Authorization");
+            if (login.Length > 0 && password.Length > 0 && password == repeatPassword && name.Length > 0 && cardNumber.Length > 0)
+            {
+                if (isDistributor)
+                {
+                    DrugDistributor user = new DrugDistributor();
+                    user.Login = login;
+                    user.Password = password;
+                    user.Name = name;
+                    user.SessionKey = cardNumber;
+                    db.DrugDistributorSet.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    DrugSuplier user = new DrugSuplier();
+                    user.Login = login;
+                    user.Password = password;
+                    user.Name = name;
+                    user.SessionKey = cardNumber;
+                    db.DrugSuplierSet.Add(user);
+                    db.SaveChanges();
+                }
+            }
+                
+
+            return actionResult;
+        }
+
         public ActionResult Auth(string login, string password)
         {
             var db = new XModelContainer();

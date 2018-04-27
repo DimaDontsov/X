@@ -7,8 +7,8 @@ namespace X.Models
 {
     public partial class DrugPack
     {
-        string UnitsOfMeasurement { get => BoughtDrugSuply.UnitsOfMeasurement.ShortName; }
-        string DrugName { get => BoughtDrugSuply.Drug.Name;}
+        public string UnitsOfMeasurement { get {return BoughtDrugSuply.UnitsOfMeasurement.ShortName; } }
+        public string DrugName { get { return BoughtDrugSuply.Drug.Name; } }
 
         public BoughtDrugSuply ReturnToSuply()
         {
