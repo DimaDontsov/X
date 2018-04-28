@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" ZoomLevel="82" >
+      <Diagram DiagramId="429f6e8f931048b1bb75069f7f8e9456" Name="MainDiagram" ZoomLevel="94" >
         <EntityTypeShape EntityType="XModel.DrugSuply" Width="1.5" PointX="8.25" PointY="3.375" />
         <EntityTypeShape EntityType="XModel.DrugSuplier" Width="1.5" PointX="2.625" PointY="3.375" />
         <EntityTypeShape EntityType="XModel.DrugDistributor" Width="1.875" PointX="14.625" PointY="3.375" />
@@ -16,14 +16,13 @@
         <EntityTypeShape EntityType="XModel.Drug" Width="1.5" PointX="5.25" PointY="5.875" />
         <AssociationConnector Association="XModel.DrugSuplyDrug" />
         <EntityTypeShape EntityType="XModel.UnitsOfMeasurement" Width="1.5" PointX="2.125" PointY="5.875" />
-        <AssociationConnector Association="XModel.DrugUnitsIOfMeasurement" ManuallyRouted="false" >
-        </AssociationConnector>
-        <AssociationConnector Association="XModel.UnitsIOfMeasurementDrugSuply" />
+        <AssociationConnector Association="XModel.UnitsOfMeasurementDrugSuply" />
         <EntityTypeShape EntityType="XModel.BoughtDrugSuply" Width="1.5" PointX="10.875" PointY="3.875" />
         <InheritanceConnector EntityType="XModel.BoughtDrugSuply" />
         <AssociationConnector Association="XModel.DrugDistributorBoughtDrugSuply" />
         <EntityTypeShape EntityType="XModel.DrugPack" Width="1.5" PointX="10.875" PointY="6" />
         <AssociationConnector Association="XModel.BoughtDrugSuplyDrugPack" />
+        <AssociationConnector Association="XModel.DrugUnitsOfMeasurement" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

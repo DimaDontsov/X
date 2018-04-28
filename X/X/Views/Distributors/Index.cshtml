@@ -17,7 +17,6 @@
 
 
 <div id="v-distributor-page">
-    <h1> {{Mess}}</h1>
     <div class="menu">
         <ul>
             <li> {{ User.Name }}</li>
@@ -76,16 +75,14 @@
                                 <th>Стоимость</th>
                                 <th>Количество</th>
                                 <th>Продавец</th>
-                                <th>Время доставки</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Дима пидор</th>
-                                <th>даром</th>
-                                <th>2 шт.</th>
-                                <th>Санек</th>
-                                <th>пулей</th>
+                            <tr v-for="drugSuply in DrugSuplies">
+                                <th> {{drugSuply.DrugName}}</th>
+                                <th> {{drugSuply.Price}}</th>
+                                <th> {{drugSuply.Count + " " + drugSuply.UnitsOfMeasurementName }}</th>
+                                <th> {{drugSuply.DrugSuplierName }}</th>
                             </tr>
 
                         </tbody>

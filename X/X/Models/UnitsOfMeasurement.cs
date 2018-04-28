@@ -14,20 +14,8 @@ namespace X.Models
     
     public partial class UnitsOfMeasurement
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UnitsOfMeasurement()
-        {
-            this.Drugs = new HashSet<Drug>();
-            this.DrugSuply = new HashSet<DrugSuply>();
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Drug> Drugs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugSuply> DrugSuply { get; set; }
     }
 }

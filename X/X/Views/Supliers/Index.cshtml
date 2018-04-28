@@ -1,13 +1,135 @@
 ﻿
 @{
     ViewBag.Title = "Suplier";
-    var loggedUser = ViewBag.LoggedUser;
+    var loggedUser = TempData["LoggedUser"];
 }
 
 <script>
-    loggedUser = '@loggedUser';
+
+    loggedUser = @Html.Raw(Json.Encode(loggedUser));
+    if (loggedUser != null) {
+        sessionStorage.setItem("loggedUserId", loggedUser.Id);
+        loggedUserId = loggedUser.Id;
+    } else {
+        loggedUserId = sessionStorage.getItem("loggedUserId");
+    }
 </script>
+<div id="v-suplier-page">
+    <div id="main_container">
+        <div class="menu">
+            <ul>
+                <li> {{User.Name}}</li>
+                <li> {{User.Balance}}</li>
+            </ul>
+            <ul>
+                <li><a href="#">Покинуть аккаунт</a></li>
+            </ul>
+        </div>
 
+        <div class="center_content">
+            <div>
+                <div class="contentStyle">
+                    <div><label for="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сортировка</label></div>
+                    <div class="styled-select">
+                        <select name="sort">
+                            <option>По возрастанию цены</option>
+                            <option>Ебать-копать</option>
+                        </select>
+                    </div>
+                </div>
 
-<h2>Suplier</h2>
+                <div class="contentStyle pressX">
+                    <div style="margin-top:5px;"><label>&nbsp;&nbsp;Добавление товара</label></div>
+                    <div class="styled-select" style="margin-right:5px;" v-model="NewSuply">
+                        <label>&nbsp;&nbsp;Товар</label>
+                        <select >
+                            <option v-for="drug in Drugs" :value ="drug.Id" v-model="NewSuply.Drug.Id" > {{ drug.Name }}</option>
+                            
+                        </select><h1>{{ NewSuply.Drug.Name }}</h1>
+                    </div>
+                    <div align="right">
+                        <label>Вес</label>
+                        <input type="text">
+                    </div>
+                    <div align="right">
+                        <select>
+                            <option v-for="unit in NewSuply.Drug.UnitsOfMeasurement"> {{ unit.Name }} </option>
+                        </select>
+                    </div>
+                    <div align="right">
+                        <label>&nbsp;&nbsp;Стоимость</label>
+                        <input type="text"></input>
+                    </div>
+                    <div align="center">
+                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
+                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
+                    </div>
+                </div>
 
+                <div class="contentStyle pressX">
+                    <div style="margin-top:5px;"><label>&nbsp;&nbsp;Редактирование товара</label></div>
+                    <div class="styled-select" style="margin-right:5px;">
+                        <label for="sort">&nbsp;&nbsp;Товар</label>
+                        <select name="sort">
+                            <option>Марьванна</option>
+                            <option>Ебать-копать</option>
+                        </select>
+                    </div>
+                    <div align="right">
+                        <label>Вес</label>
+                        <input type="text"></input>
+                    </div>
+                    <div align="right">
+                        <label>&nbsp;&nbsp;Стоимость</label>
+                        <input type="text"></input>
+                    </div>
+                    <div align="center">
+                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
+                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="contentStyle" style="margin-top:30px;">
+                    <table class="table_col scrolling-table" height="280" style="background-color:#e9e5e2;">
+                        <colgroup>
+                            <col style="background:#999999;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Стоимость</th>
+                                <th>Количество</th>
+                                <th>Продавец</th>
+                                <th>Время доставки</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Дима пидор</th>
+                                <th>даром</th>
+                                <th>2 шт.</th>
+                                <th>Санек</th>
+                                <th>пулей</th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="contentStyle" style="margin-top:30px;">
+                    <div>
+                        <input type="button" value="Добавление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                    </div>
+                    <div>
+                        <input type="button" value="Редактирование товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                    </div>
+                    <div>
+                        <input type="button" value="Удаление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/scripts/Supliers/Suplier.js")
