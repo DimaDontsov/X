@@ -179,7 +179,7 @@
                 <label for="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сортировка:</label>
                 <select name="sort">
                     <option>По возрастанию цены</option>
-                    <option>Ебать-копать</option>
+                    <option>По убыванию цены</option>
                 </select>
             </div>
 
@@ -199,12 +199,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Дима пидор</th>
-                                <th>даром</th>
-                                <th>2 шт.</th>
-                                <th>Санек</th>
-                                <th>пулей</th>
+                            <tr v-for="drugSuply in DrugSuplies">
+                                <th> {{drugSuply.DrugName}}</th>
+                                <th> {{drugSuply.Price}}</th>
+                                <th> {{drugSuply.Count + " " + drugSuply.UnitsOfMeasurementName }}</th>
+                                <th> {{drugSuply.DrugSuplierName }}</th>
                             </tr>
 
                         </tbody>
@@ -215,7 +214,7 @@
                         <label for="sort">&nbsp;&nbsp;Товар:</label>
                         <select name="sort">
                             <option>Марьванна</option>
-                            <option>Ебать-копать</option>
+                            <option>Ляля</option>
                         </select>
                     </div>
                     <div>
@@ -223,7 +222,7 @@
                         <input type="text" />
                         <div class="styled-select" style="margin-right:5px; display:inline;">
                             <select name="sort">
-                                <option>гр</option>
+                                <option>грамм</option>
                                 <option>фунт</option>
                             </select>
                         </div>
@@ -233,8 +232,8 @@
                         <input type="text" />
                     </div>
                     <div align="center">
-                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;" />
-                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;" />
+                        <input type="button" value="Купить" style="width:30%; background-color:#C0C0C0;" />
+                        <input type="button" value="Отмена" style="width:30%; background-color:#C0C0C0;" />
                     </div>
                 </div>
             </div>
@@ -243,3 +242,4 @@
     </div>
 </div>
 
+@Scripts.Render("~/scripts/Distributors/Distributor.js")
