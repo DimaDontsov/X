@@ -79,6 +79,8 @@ namespace X.Controllers
                 return BadRequest(ModelState);
             }
 
+            drugSuply.DeliveryTime = DateTime.Now;
+
             db.DrugSuplySet.Add(drugSuply);
             db.SaveChanges();
 

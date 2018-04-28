@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using System.Web.Http.OData.Builder;
 namespace X
 {
     public static class WebApiConfig
@@ -12,6 +12,13 @@ namespace X
             // Web API configuration and services
 
             // Web API routes
+            //config.EnableQuerySupport();
+            ODataConventionModelBuilder modelBuilder = new ODataConventionModelBuilder();
+
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

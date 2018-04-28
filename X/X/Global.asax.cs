@@ -20,12 +20,6 @@ namespace X
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            var db = new XModelContainer();
-            var sus = db.SystemUserSet.ToList();
-            var su = db.SystemUserSet.Find(1);
-            var dss = db.DrugDistributorSet;
-            DrugDistributor ds = dss.Find(1);
-            int stop = 1;
         }
     }
 }
