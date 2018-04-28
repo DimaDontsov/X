@@ -19,6 +19,13 @@ namespace X.Controllers
         // GET: api/Drugs
         public IQueryable<Drug> GetDrugSet()
         {
+            foreach (var drug in db.DrugSet)
+            {
+                foreach ( var unit in drug.UnitsOfMeasurement)
+                {
+                    var str = unit.ToString();
+                }
+            }
             return db.DrugSet;
         }
 

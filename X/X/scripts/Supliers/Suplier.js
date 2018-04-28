@@ -36,17 +36,14 @@ vSuplierPage = new Vue({
     },
     watch: {
         SelectedDrugId: function () {
-            let us = [];
             if (this.SelectedDrugId) {
                 for (let i = 0; i < this.Drugs.length; i++) {
                     if (this.Drugs[i].Id === this.SelectedDrugId) {
                         this.Units = this.Drugs[i].UnitsOfMeasurement;
-
                         break;
                     }
                 }
             }
-            return us;
         },
     },
     methods: {
@@ -54,6 +51,27 @@ vSuplierPage = new Vue({
             var that = this;
             $.get("/api/Drugs", {}, function (data) {
                 that.$data.Drugs = data;
+                for (let d of that.$data.Drugs) {
+                    for (let iu = 0; iu < d.UnitsOfMeasurement.length; iu++) {
+                        u = d.UnitsOfMeasurement[iu];
+                        if (u.$ref !== undefined) {
+                            let isFindSource = false;
+                            for (let _d of that.$data.Drugs) {
+                                for (let _u of _d.UnitsOfMeasurement) {
+                                    isFindSource = _u.$id !== undefined && _u.$id === u.$ref;
+                                    if (isFindSource) {
+                                        d.UnitsOfMeasurement[iu] = _u;
+                                        break;
+                                    }
+                                    if (isFindSource) {
+                                        break;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
             });
         },
         setUserId: function (u) {

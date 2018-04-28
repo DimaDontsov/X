@@ -7,9 +7,9 @@ namespace X.Models
 {
     public partial class DrugSuply : ICloneable
     {
-        public string DrugName { get { return Drug.Name; } }
-        public string UnitsOfMeasurementName {  get { return UnitsOfMeasurement.ShortName;  } }
-        public string DrugSuplierName {  get { return DrugSuplier.Name; } }
+        public string DrugName { get { return Drug?.Name; } }
+        public string UnitsOfMeasurementName {  get { return UnitsOfMeasurement?.ShortName;  } }
+        public string DrugSuplierName {  get { return DrugSuplier?.Name; } }
 
         public object Clone()
         {

@@ -19,6 +19,7 @@ namespace X.Controllers
         // GET: api/DrugSuplies
         public IQueryable<DrugSuply> GetDrugSuplySet()
         {
+            var l = db.DrugSuplySet.ToList();
             return db.DrugSuplySet;
         }
 

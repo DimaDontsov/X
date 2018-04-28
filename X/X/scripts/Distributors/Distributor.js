@@ -26,14 +26,12 @@ vDistributorPage = new Vue({
     methods: {
         fillDrugSuplies: function () {
             var that = this;
-            $.get("/api/DrugSuplies", {}, function (data) {
-                that.$data.DrugSuplies = data;
-            });
-        },
-        fillPacks: function () {
-            var that = this;
-            $.get("/api/DrugDistributors/" + u, {}, function (data) {
-                that.$data.User = data;
+            $.get("/api/DrugSupliers", {}, function (data) {
+                for (let suplier of data) {
+                    for (let suply of suplier.DrugSuplies) {
+                        that.$data.DrugSuplies.push(suply);
+                    }
+                }
             });
         },
         setUserId: function (u) {
@@ -61,7 +59,6 @@ vDistributorPage = new Vue({
     },
     created: function () {
         this.setUserId(loggedUserId);
-        this.fillPacks();
         this.fillDrugSuplies();
         
     }
