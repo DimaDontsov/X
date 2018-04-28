@@ -31,7 +31,12 @@ namespace X.Controllers
             {
                 return NotFound();
             }
-
+            /*
+            foreach( var s in drugSuplier.DrugSuplies)
+            {
+                s.DrugSuplier = null;
+            }
+            */
             return Ok(drugSuplier);
         }
 

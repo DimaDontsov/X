@@ -1,11 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Suplier";
+    ViewBag.Title = "Index";
     var loggedUser = TempData["LoggedUser"];
 }
 
 <script>
-
     loggedUser = @Html.Raw(Json.Encode(loggedUser));
     if (loggedUser != null) {
         sessionStorage.setItem("loggedUserId", loggedUser.Id);
@@ -14,22 +13,23 @@
         loggedUserId = sessionStorage.getItem("loggedUserId");
     }
 </script>
+
 <div id="v-suplier-page">
     <div id="main_container">
         <div class="menu">
             <ul>
-                <li> {{User.Name}}</li>
-                <li> {{User.Balance}}</li>
+                <li> {{User.Name}} </li>
+                <li> {{User.Balance +'рр'}} </li>
             </ul>
             <ul>
-                <li><a href="#">Покинуть аккаунт</a></li>
+                <li><a href="~/Authorization/">Покинуть аккаунт</a></li>
             </ul>
         </div>
 
         <div class="center_content">
             <div>
                 <div class="contentStyle">
-                    <div><label for="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сортировка</label></div>
+                    <div><label for="sort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сортировка:</label></div>
                     <div class="styled-select">
                         <select name="sort">
                             <option>По возрастанию цены</option>
@@ -39,55 +39,34 @@
                 </div>
 
                 <div class="contentStyle pressX">
-                    <div style="margin-top:5px;"><label>&nbsp;&nbsp;Добавление товара</label></div>
-                    <div class="styled-select" style="margin-right:5px;" v-model="NewSuply">
-                        <label>&nbsp;&nbsp;Товар</label>
-                        <select >
-                            <option v-for="drug in Drugs" :value ="drug.Id" v-model="NewSuply.Drug.Id" > {{ drug.Name }}</option>
-                            
-                        </select><h1>{{ NewSuply.Drug.Name }}</h1>
-                    </div>
-                    <div align="right">
-                        <label>Вес</label>
-                        <input type="text">
-                    </div>
-                    <div align="right">
-                        <select>
-                            <option v-for="unit in NewSuply.Drug.UnitsOfMeasurement"> {{ unit.Name }} </option>
+                    <div style="margin-top:5px;" align="center" v-if="isEdit"><label> Редактирование товара</label></div>
+                    <div style="margin-top:5px;" align="center" v-if="!isEdit"><label> Добавление товара</label></div>
+                    <div class="styled-select" style="margin-right:5px;">
+                        <label for="sort">&nbsp;&nbsp;Товар:</label>
+                        <select name="sort" v-model="SelectedDrugId">
+                            <option v-for="drug in Drugs" v-bind:value="drug.Id"> {{drug.Name}}</option>
                         </select>
                     </div>
-                    <div align="right">
-                        <label>&nbsp;&nbsp;Стоимость</label>
-                        <input type="text"></input>
+                    <div>
+                        <label>&nbsp;&nbsp;Кол-во:</label>
+                        <input type="text" v-model="SelectedCount">
+                        <div class="styled-select" style="margin-right:5px; display:inline;">
+                            <select name="sort" v-model="SelectedUnitId">
+                                <option v-for="u in Units" v-bind:value="u.Id"> {{ u.Name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label>&nbsp;&nbsp;Стоимость:</label>
+                        <input type="text" v-model="SelectedPrice">
                     </div>
                     <div align="center">
-                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
-                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
+                        <input v-on:click="addSuply()" type="button" value="Купить" style="width:30%; background-color:#C0C0C0;">
+                        <input type="button" value="Отмена" v-on:click="cancelEdit" style="width:30%; background-color:#C0C0C0;">
                     </div>
                 </div>
 
-                <div class="contentStyle pressX">
-                    <div style="margin-top:5px;"><label>&nbsp;&nbsp;Редактирование товара</label></div>
-                    <div class="styled-select" style="margin-right:5px;">
-                        <label for="sort">&nbsp;&nbsp;Товар</label>
-                        <select name="sort">
-                            <option>Марьванна</option>
-                            <option>Ебать-копать</option>
-                        </select>
-                    </div>
-                    <div align="right">
-                        <label>Вес</label>
-                        <input type="text"></input>
-                    </div>
-                    <div align="right">
-                        <label>&nbsp;&nbsp;Стоимость</label>
-                        <input type="text"></input>
-                    </div>
-                    <div align="center">
-                        <input type="button" value="Купить&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
-                        <input type="button" value="Отмена&nbsp;&nbsp;" style="width:30%; background-color:#C0C0C0;"></input>
-                    </div>
-                </div>
+                
             </div>
             <div>
                 <div class="contentStyle" style="margin-top:30px;">
@@ -100,17 +79,15 @@
                                 <th>Название</th>
                                 <th>Стоимость</th>
                                 <th>Количество</th>
-                                <th>Продавец</th>
-                                <th>Время доставки</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Дима пидор</th>
-                                <th>даром</th>
-                                <th>2 шт.</th>
-                                <th>Санек</th>
-                                <th>пулей</th>
+                            <tr v-for="suply in MyDrugSuplies">
+                                <th> {{suply.DrugName}} </th>
+                                <th> {{suply.Price}}</th>
+                                <th> {{suply.Count + suply.UnitsOfMeasurementName}}</th>
+                                <th> <button class="btn-warning" v-bind:data-suplyId="suply.Id" v-on:click="startEdit">Редактировать</button></th>
+                                <th> <button class="btn-danger" v-bind:data-suplyId="suply.Id">Удалить</button></th>                 
                             </tr>
 
                         </tbody>
@@ -118,13 +95,13 @@
                 </div>
                 <div class="contentStyle" style="margin-top:30px;">
                     <div>
-                        <input type="button" value="Добавление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                        <input type="button" value="Добавление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;">
                     </div>
                     <div>
-                        <input type="button" value="Редактирование товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                        <input type="button" value="Редактирование товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;">
                     </div>
                     <div>
-                        <input type="button" value="Удаление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;"></input>
+                        <input type="button" value="Удаление товара&nbsp;&nbsp;" style="width:100%; background-color:#C0C0C0;">
                     </div>
                 </div>
             </div>
