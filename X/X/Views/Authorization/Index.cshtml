@@ -1,8 +1,8 @@
 ﻿
 <div class="login-wrap">
     <div class="login-html">
-        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked/><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Sign Up</label>
         <div class="login-form">
             <div class="sign-in-htm">
                 @using (Html.BeginForm("Auth", "Authorization", FormMethod.Post))
@@ -13,7 +13,7 @@
                     </div>
                     <div class="group">
                         <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password" name="password">
+                        <input type="password" class="input" data-type="password" name="password">
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked>
@@ -29,48 +29,56 @@
                 }
             </div>
             <div class="sign-up-htm">
-                @using (Html.BeginForm("Registration", "Authorization", FormMethod.Post))
-                {
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input" name="login">
+                <div class="group">
+                    <label for="user" class="label">Username</label>
+                    <input type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Password</label>
+                    <input type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Repeat Password</label>
+                    <input type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Name&amp;Surename</label>
+                    <input  type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Card Number</label>
+                    <input  name="card" type="text" class="input"/>
+                </div>
+                <div class="radio">
+                    <div style="display:inline-block; margin-left:5px">
+                        <input id="radio-1" name="radio" type="radio" checked>
+                        <label for="radio-1" class="radio-label">Distributor</label>
                     </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password" name="password">
+                    <div style="display:inline-block; margin-left:5px">
+                        <input id="radio-2" name="radio" type="radio">
+                        <label for="radio-2" class="radio-label">Provider</label>
                     </div>
-                    <div class="group">
-                        <label for="pass" class="label">Repeat Password</label>
-                        <input id="pass" type="password" class="input" data-type="password" name="repeatPassword">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Name&amp;Surname</label>
-                        <input id="pass" type="text" class="input" name="name">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Card Number</label>
-                        <input id="pass" type="text" class="input" name="cardNumber">
-                    </div>
-                    <div class="group">
+                </div>
+				 @*<div class="group">
                         <input id="tab-3" type="radio" name="isDistributor" value="true" class="sign-in" checked><label for="tab-3" class="tab">Distributor</label>
                         <input id="tab-4" type="radio" name="isDistributor" value="false" class="sign-up"><label for="tab-4" class="tab">Suplier</label>
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <a for="tab-1">Already Member?</a>
-                    </div>
-                }     
+                   </div>*@
+                <div class="group">
+                    <input type="submit" class="button" value="Sign Up">
+                </div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                    <a href="#" id="signinRedirect">Already Member?</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<script>
-		$(function(){
-		  $("input[name='card']").mask("9999 9999 9999 9999");
-		});
-</script>
+@section Scripts {
+    <script>
+        $('#signinRedirect').click(function () {
+            $('#tab-1').click();
+        });
+    </script>
+}
