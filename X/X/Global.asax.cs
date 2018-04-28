@@ -23,8 +23,8 @@ namespace X
             var db = new XModelContainer();
             var sus = db.SystemUserSet.ToList();
             var su = db.SystemUserSet.Find(1);
-            var dss = db.DrugSuplierSet;
-            DrugSuplier ds = dss.Find(1);
+            var dss = db.DrugDistributorSet;
+            DrugDistributor ds = dss.Find(1);
             int stop = 1;
         }
     }
