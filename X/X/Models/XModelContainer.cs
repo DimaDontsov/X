@@ -12,5 +12,8 @@ namespace X.Models
         public virtual DbSet<BoughtDrugSuply> BoughtDrugSuplySet { get; set; }
         public virtual DbSet<DrugDistributor> DrugDistributorSet { get; set; }
         public virtual DbSet<DrugSuplier> DrugSuplierSet { get; set; }
+        public virtual DbSet<DrugSuplyOffer>DrugSuplyOffers { get; set; }
+
+        public System.Data.Entity.DbSet<X.Models.DrugSuplyOffer> DrugSuplies { get; set; }
     }
 }

@@ -53,7 +53,6 @@ namespace X.Controllers
             var db = new XModelContainer();
             SystemUser user = null;
             ActionResult actionResult = Redirect("/Authorization");
-            var d = db.DrugDistributorSet.First();
             var distributorUser = db.DrugDistributorSet.Where((u) => u.Login == login && u.Password == password).FirstOrDefault();
             if (distributorUser != null)
             {

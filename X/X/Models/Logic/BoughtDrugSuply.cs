@@ -20,5 +20,19 @@ namespace X.Models
             this.Count -= dp.Count;
             return dp;
         }
+
+        public object Clone()
+        {
+            var that = this;
+            return new BoughtDrugSuply()
+            {
+                Count = that.Count,
+                DeliveryTime = that.DeliveryTime,
+                Drug = that.Drug,
+                DrugSuplierId = that.DrugSuplierId,
+                Price = that.Price,
+                UnitsOfMeasurement = that.UnitsOfMeasurement,
+            };
+        }
     }
 }

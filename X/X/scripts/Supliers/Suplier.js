@@ -63,22 +63,31 @@ vSuplierPage = new Vue({
                                         d.UnitsOfMeasurement[iu] = _u;
                                         break;
                                     }
-                                    if (isFindSource) {
-                                        break;
-                                    }
+                                }
+                                if (isFindSource) {
+                                    break;
                                 }
                             }
-
                         }
                     }
                 }
             });
         },
+
+        fillSuplyOffers() {
+            var that = this;
+            $.get("/Supliers/GetDrugSupliesOffers", { suplierId: that.User.Id }, function (data) {
+                let suplies = JSON.parse(data);
+                setRefs(suplies);
+                that.MyDrugSuplies = suplies;
+            })
+        },
         setUserId: function (u) {
             var that = this;
             $.get("/api/DrugSupliers/" + u, {}, function (data) {
                 that.$data.User = data;
-                that.$data.MyDrugSuplies = that.$data.User.DrugSuplies;
+
+                that.fillSuplyOffers();
             });
         },
         addSuply: function () {
@@ -90,34 +99,71 @@ vSuplierPage = new Vue({
                 UnitsOfMeasurementId : this.SelectedUnitId
             }
             var that = this;
-            $.post("/api/DrugSuplies", s, function () {
-                that.fillDrugs();
+            $.post("/api/DrugSuplyOffers", s, function () {
+                that.fillSuplyOffers();
             });
         },
 
-        startEdit: function (e) {
+        startEdit: function (suplyId) {
             this.isEdit = true;
-            this.SelectedSuplyId = e.target.dataset.suplyid;
+            this.SelectedSuplyId = suplyId;
             if (this.SelectedDrugId) {
                 for (let i = 0; i < this.MyDrugSuplies.length; i++) {
-                    if (this.MyDrugSuplies[i] === this.SelectedSuplyId) {
-                        this.SelectedCount = MyDrugSuplies[i].Count;
-                        this.SelectedDrugId = MyDrugSuplies[i].DrugId;
-                        this.SelectedUnitId = MyDrugSuplies[i].UnitsOfMeasurementId;
-                        this.SelectedPrice = MyDrugSuplies[i].Price;
+                    if (this.MyDrugSuplies[i].Id === this.SelectedSuplyId) {
+                        this.SelectedCount = this.MyDrugSuplies[i].Count;
+                        this.SelectedDrugId = this.MyDrugSuplies[i].DrugId;
+                        this.SelectedUnitId = this.MyDrugSuplies[i].UnitsOfMeasurementId;
+                        this.SelectedPrice = this.MyDrugSuplies[i].Price;
                         break;
                     }
                 }
             }
         },
-
+        editSuply() {
+            var that = this;
+            var editableSuply = null;
+            for (let s of this.MyDrugSuplies) {
+                if (s.Id === this.SelectedSuplyId) {
+                    editableSuply = s;
+                    break;
+                }
+            }
+            editableSuply.Id = that.SelectedSuplyId;
+            editableSuply.Count= that.SelectedCount;
+            editableSuply.DrugId= that.SelectedDrugId;
+            editableSuply.UnitsOfMeasurementId= that.SelectedUnitId;
+            editableSuply.Price= that.SelectedPrice;
+            $.ajax({
+                url: "/api/DrugSuplyOffers/" + that.SelectedSuplyId,
+                type: "PUT",
+                data: editableSuply,
+                success: function (data) {
+                    that.fillSuplyOffers();
+                }
+            });
+            isEdit = false;
+        },
         cancelEdit: function () {
             this.isEdit = false;
             this.SelectedCount = 0;
             this.SelectedDrugId = -1;
             this.SelectedUnitId = -1;
             this.SelectedPrice = 0;
+        },
+
+        removeSuply(suplyId) {
+            var that = this;
+            $.ajax({
+                url: "/api/DrugSuplyOffers/" + suplyId,
+                type: "Delete",
+                success: function (data) {
+                    that.fillSuplyOffers();
+                }
+            });
         }
+
+
+
 
     },
 

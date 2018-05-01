@@ -13,14 +13,15 @@ namespace X.Models
 
         public object Clone()
         {
+            var that = this;
             return new DrugSuply()
             {
-                Count = this.Count,
-                DeliveryTime = this.DeliveryTime,
-                Drug = this.Drug,
-                DrugSuplier = this.DrugSuplier,
-                Price = this.Price,
-                UnitsOfMeasurement = this.UnitsOfMeasurement,
+                Count = that.Count,
+                DeliveryTime = that.DeliveryTime,
+                Drug = that.Drug,
+                DrugSuplierId = that.DrugSuplierId,
+                Price = that.Price,
+                UnitsOfMeasurement = that.UnitsOfMeasurement,
             };
         }
     }

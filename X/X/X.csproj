@@ -216,6 +216,7 @@
     <Content Include="scripts\Supliers\Suplier.js" />
     <Content Include="scripts\vue.js" />
     <Content Include="scripts\vue.min.js" />
+    <Content Include="scripts\_helpers.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +230,7 @@
     <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\DrugSupliersController.cs" />
     <Compile Include="Controllers\DrugSupliesController.cs" />
+    <Compile Include="Controllers\DrugSuplyOffersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SupliersController.cs" />
     <Compile Include="Controllers\UnitsOfMeasurementsController.cs" />
@@ -251,6 +253,9 @@
       <DependentUpon>XModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DrugSuply.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DrugSuplyOffer.cs">
       <DependentUpon>XModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Logic\BoughtDrugSuply.cs" />
@@ -310,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Buy\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

@@ -23,6 +23,10 @@
         <EntityTypeShape EntityType="XModel.DrugPack" Width="1.5" PointX="10.875" PointY="6" />
         <AssociationConnector Association="XModel.BoughtDrugSuplyDrugPack" />
         <AssociationConnector Association="XModel.DrugUnitsOfMeasurement" />
+        <EntityTypeShape EntityType="XModel.DrugSuplyOffer" Width="1.5" PointX="6" PointY="4.25" />
+        <InheritanceConnector EntityType="XModel.DrugSuplyOffer" />
+        <AssociationConnector Association="XModel.DrugSuplierDrugSuplyOffer" ManuallyRouted="false" >
+        </AssociationConnector>
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

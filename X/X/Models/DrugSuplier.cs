@@ -18,10 +18,13 @@ namespace X.Models
         public DrugSuplier()
         {
             this.DrugSuplies = new HashSet<DrugSuply>();
+            this.DrugSuplyOffers = new HashSet<DrugSuplyOffer>();
         }
     
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugSuply> DrugSuplies { get; set; }
+        internal virtual ICollection<DrugSuply> DrugSuplies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DrugSuplyOffer> DrugSuplyOffers { get; set; }
     }
 }

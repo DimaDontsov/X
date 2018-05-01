@@ -50,6 +50,7 @@ namespace X.Controllers
                 return BadRequest();
             }
 
+            drugSuply.DeliveryTime = DateTime.Now;
             db.Entry(drugSuply).State = EntityState.Modified;
 
             try
@@ -112,7 +113,7 @@ namespace X.Controllers
             }
             base.Dispose(disposing);
         }
-
+        
         private bool DrugSuplyExists(int id)
         {
             return db.DrugSuplySet.Count(e => e.Id == id) > 0;

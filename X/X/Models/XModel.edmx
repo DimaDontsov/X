@@ -14,6 +14,7 @@
     <EntitySet Name="SystemUserSet_DrugSuplier" EntityType="XModel.Store.SystemUserSet_DrugSuplier" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SystemUserSet_DrugDistributor" EntityType="XModel.Store.SystemUserSet_DrugDistributor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DrugSuplySet_BoughtDrugSuply" EntityType="XModel.Store.DrugSuplySet_BoughtDrugSuply" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DrugSuplySet_DrugSuplyOffer" EntityType="XModel.Store.DrugSuplySet_DrugSuplyOffer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DrugUnitsOfMeasurement" EntityType="XModel.Store.DrugUnitsOfMeasurement" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="DrugDealersDrugSuplies" Association="XModel.Store.DrugDealersDrugSuplies">
       <End Role="DrugDealers" EntitySet="SystemUserSet_DrugSuplier" />
@@ -54,6 +55,10 @@
     <AssociationSet Name="FK_BoughtDrugSuply_inherits_DrugSuply" Association="XModel.Store.FK_BoughtDrugSuply_inherits_DrugSuply">
       <End Role="DrugSuply" EntitySet="DrugSuplySet" />
       <End Role="BoughtDrugSuply" EntitySet="DrugSuplySet_BoughtDrugSuply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DrugSuplyOffer_inherits_DrugSuply" Association="XModel.Store.FK_DrugSuplyOffer_inherits_DrugSuply">
+      <End Role="DrugSuply" EntitySet="DrugSuplySet" />
+      <End Role="DrugSuplyOffer" EntitySet="DrugSuplySet_DrugSuplyOffer" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="DrugSuplySet">
@@ -123,6 +128,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="DrugDistributorId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DrugSuplySet_DrugSuplyOffer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DrugUnitsOfMeasurement">
@@ -259,6 +270,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DrugSuplyOffer_inherits_DrugSuply">
+    <End Role="DrugSuply" Type="XModel.Store.DrugSuplySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DrugSuplyOffer" Type="XModel.Store.DrugSuplySet_DrugSuplyOffer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DrugSuply">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DrugSuplyOffer">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -293,6 +318,10 @@
             <End Role="Drug" EntitySet="DrugSet" />
             <End Role="UnitsOfMeasurement" EntitySet="UnitsOfMeasurementSet" />
           </AssociationSet>
+          <AssociationSet Name="DrugSuplierDrugSuplyOffer" Association="XModel.DrugSuplierDrugSuplyOffer">
+            <End Role="DrugSuplier" EntitySet="SystemUserSet" />
+            <End Role="DrugSuplyOffer" EntitySet="DrugSuplySet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DrugSuply">
           <Key>
@@ -310,7 +339,8 @@
           <Property Name="UnitsOfMeasurementId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DrugSuplier" BaseType="XModel.SystemUser">
-          <NavigationProperty Name="DrugSuplies" Relationship="XModel.DrugDealersDrugSuplies" FromRole="DrugDealers" ToRole="DrugSuplies" />
+          <NavigationProperty Name="DrugSuplies" Relationship="XModel.DrugDealersDrugSuplies" FromRole="DrugDealers" ToRole="DrugSuplies" cg:SetterAccess="Internal" cg:GetterAccess="Internal" />
+          <NavigationProperty Name="DrugSuplyOffers" Relationship="XModel.DrugSuplierDrugSuplyOffer" FromRole="DrugSuplier" ToRole="DrugSuplyOffer" />
         </EntityType>
         <EntityType Name="DrugDistributor" BaseType="XModel.SystemUser">
           <NavigationProperty Name="BoughtDrugSuplies" Relationship="XModel.DrugDistributorBoughtDrugSuply" FromRole="DrugDistributor" ToRole="BoughtDrugSuply" />
@@ -424,6 +454,20 @@
           <End Type="XModel.Drug" Role="Drug" Multiplicity="*" />
           <End Type="XModel.UnitsOfMeasurement" Role="UnitsOfMeasurement" Multiplicity="*" />
         </Association>
+        <EntityType Name="DrugSuplyOffer" BaseType="XModel.DrugSuply" >
+        </EntityType>
+        <Association Name="DrugSuplierDrugSuplyOffer">
+          <End Type="XModel.DrugSuplier" Role="DrugSuplier" Multiplicity="1" />
+          <End Type="XModel.DrugSuplyOffer" Role="DrugSuplyOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugSuplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DrugSuplyOffer">
+              <PropertyRef Name="DrugSuplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -446,6 +490,11 @@
         <MappingFragment StoreEntitySet="DrugSuplySet_BoughtDrugSuply">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DrugDistributorId" ColumnName="DrugDistributorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(XModel.DrugSuplyOffer)">
+        <MappingFragment StoreEntitySet="DrugSuplySet_DrugSuplyOffer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

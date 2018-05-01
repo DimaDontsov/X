@@ -20,6 +20,10 @@ namespace X
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            var settings = new Newtonsoft.Json.JsonSerializerSettings();
+            settings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            //Newtonsoft.Json.
         }
     }
 }

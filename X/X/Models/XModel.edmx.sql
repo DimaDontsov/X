@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/28/2018 03:42:44
+-- Date Created: 04/30/2018 11:23:40
 -- Generated from EDMX file: D:\_Study\labs\ITManagment\X\X\X\X\Models\XModel.edmx
 -- --------------------------------------------------
 
@@ -31,6 +31,12 @@ IF OBJECT_ID(N'[dbo].[FK_DrugDistributorBoughtDrugSuply]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_BoughtDrugSuplyDrugPack]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DrugPackSet] DROP CONSTRAINT [FK_BoughtDrugSuplyDrugPack];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugUnitsOfMeasurement_Drug]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugUnitsOfMeasurement] DROP CONSTRAINT [FK_DrugUnitsOfMeasurement_Drug];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DrugUnitsOfMeasurement_UnitsOfMeasurement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DrugUnitsOfMeasurement] DROP CONSTRAINT [FK_DrugUnitsOfMeasurement_UnitsOfMeasurement];
 GO
 IF OBJECT_ID(N'[dbo].[FK_DrugSuplier_inherits_SystemUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SystemUserSet_DrugSuplier] DROP CONSTRAINT [FK_DrugSuplier_inherits_SystemUser];
@@ -69,6 +75,9 @@ IF OBJECT_ID(N'[dbo].[SystemUserSet_DrugDistributor]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[DrugSuplySet_BoughtDrugSuply]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DrugSuplySet_BoughtDrugSuply];
+GO
+IF OBJECT_ID(N'[dbo].[DrugUnitsOfMeasurement]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DrugUnitsOfMeasurement];
 GO
 
 -- --------------------------------------------------
@@ -144,6 +153,12 @@ CREATE TABLE [dbo].[DrugSuplySet_BoughtDrugSuply] (
 );
 GO
 
+-- Creating table 'DrugSuplySet_DrugSuplyOffer'
+CREATE TABLE [dbo].[DrugSuplySet_DrugSuplyOffer] (
+    [Id] int  NOT NULL
+);
+GO
+
 -- Creating table 'DrugUnitsOfMeasurement'
 CREATE TABLE [dbo].[DrugUnitsOfMeasurement] (
     [DrugUnitsOfMeasurement_UnitsOfMeasurement_Id] int  NOT NULL,
@@ -200,6 +215,12 @@ GO
 -- Creating primary key on [Id] in table 'DrugSuplySet_BoughtDrugSuply'
 ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply]
 ADD CONSTRAINT [PK_DrugSuplySet_BoughtDrugSuply]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'DrugSuplySet_DrugSuplyOffer'
+ALTER TABLE [dbo].[DrugSuplySet_DrugSuplyOffer]
+ADD CONSTRAINT [PK_DrugSuplySet_DrugSuplyOffer]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -333,6 +354,15 @@ GO
 -- Creating foreign key on [Id] in table 'DrugSuplySet_BoughtDrugSuply'
 ALTER TABLE [dbo].[DrugSuplySet_BoughtDrugSuply]
 ADD CONSTRAINT [FK_BoughtDrugSuply_inherits_DrugSuply]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[DrugSuplySet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'DrugSuplySet_DrugSuplyOffer'
+ALTER TABLE [dbo].[DrugSuplySet_DrugSuplyOffer]
+ADD CONSTRAINT [FK_DrugSuplyOffer_inherits_DrugSuply]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[DrugSuplySet]
         ([Id])
