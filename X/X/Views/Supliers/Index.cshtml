@@ -26,11 +26,11 @@
     <div id="main_container">
         <div class="menu">
             <ul>
-                <li> {{User.Name}} </li>
-                <li> {{User.Balance +'рр'}} </li>
+                <li> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Имя пользователя: {{User.Name}} </li>
+                <li> @*<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>*@ Баланс: {{User.Balance +' руб.'}} </li> 
             </ul>
             <ul>
-                <li><a href="~/Authorization/">Покинуть аккаунт</a></li>
+                <li><a  href="~/Authorization/" > <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Покинуть аккаунт</a></li>
             </ul>
         </div>
 
@@ -48,7 +48,7 @@
                     </div>
                     <div>
                         <label>&nbsp;&nbsp;Кол-во:</label>
-                        <input type="text" v-model="SelectedCount">
+                        <input type="number" min="0" max="9999999999" v-model="SelectedCount">
                         <div class="styled-select" style="margin-right:5px; display:inline;">
                             <select name="sort" v-model="SelectedUnitId">
                                 <option v-for="u in Units" v-bind:value="u.Id"> {{ u.Name }}</option>
@@ -56,12 +56,12 @@
                         </div>
                     </div>
                     <div>
-                        <label>&nbsp;&nbsp;Стоимость:</label>
-                        <input type="text" v-model="SelectedPrice">
+                        <label>&nbsp;&nbsp;Стоимость, руб. :</label>
+                        <input type="number"  min="0" max="9999999999" v-model="SelectedPrice">
                     </div>
                     <div align="center">
 
-                        <input v-show="!isEdit" v-on:click="addSuply()" type="button" value="Купить" style="width:30%; background-color:#C0C0C0;">
+                        <input class="btn btn-primary" v-show="!isEdit" v-on:click="addSuply()" type="button"  value="Купить" style="width:30%; ">
                         <input v-show="isEdit" v-on:click="editSuply()" type="button" value="Сохранить" style="width:30%; background-color:#C0C0C0;">
                         <input v-show="isEdit" type="button" value="Отмена" v-on:click="cancelEdit" style="width:30%; background-color:#C0C0C0;">
                     </div>
@@ -78,7 +78,7 @@
                         <thead>
                             <tr>
                                 <th>Название</th>
-                                <th>Стоимость</th>
+                                <th>Стоимость, руб.</th>
                                 <th>Количество</th>
                             </tr>
                         </thead>
@@ -86,9 +86,9 @@
                             <tr v-for="suply in MyDrugSuplies">
                                 <th> {{suply.DrugName}} </th>
                                 <th> {{suply.Price}}</th>
-                                <th> {{suply.Count + suply.UnitsOfMeasurementName}}</th>
-                                <th> <button class="btn-warning" v-bind:data-suplyId="suply.Id" v-on:click="startEdit(suply.Id)">Редактировать</button></th>
-                                <th> <button class="btn-danger" v-bind:data-suplyId="suply.Id" v-on:click="removeSuply(suply.Id)">Удалить</button></th>                 
+                                <th> {{suply.Count + " " + suply.UnitsOfMeasurementName}}</th>
+                                <th> <button type="button" class="btn btn-warning" v-bind:data-suplyId="suply.Id" v-on:click="startEdit(suply.Id)">Редактировать</button></th>
+                                <th> <button type="button" class="btn btn-danger" v-bind:data-suplyId="suply.Id" v-on:click="removeSuply(suply.Id)">Удалить</button></th>                 
                             </tr>
 
                         </tbody>
