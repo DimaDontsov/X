@@ -48,7 +48,8 @@
                     </div>
                     <div>
                         <label>&nbsp;&nbsp;Кол-во:</label>
-                        <input type="number" min="0" max="9999999999" v-model="SelectedCount">
+                        @*@Html.TextBox("Count", Model.Count)*@
+                        <input type="number" min="0" max="1000000" v-model="SelectedCount">
                         <div class="styled-select" style="margin-right:5px; display:inline;">
                             <select name="sort" v-model="SelectedUnitId">
                                 <option v-for="u in Units" v-bind:value="u.Id"> {{ u.Name }}</option>
@@ -57,7 +58,7 @@
                     </div>
                     <div>
                         <label>&nbsp;&nbsp;Стоимость, руб. :</label>
-                        <input type="number"  min="0" max="9999999999" v-model="SelectedPrice">
+                        <input type="number"  min="0" max="1000000" v-model="SelectedPrice">
                     </div>
                     <div align="center">
 
@@ -71,6 +72,7 @@
             </div>
             <div>
                 <div class="contentStyle" style="margin-top:30px;">
+                    <caption>Таблица товаров</caption>
                     <table class="table_col scrolling-table" height="280" style="background-color:#e9e5e2;">
                         <colgroup>
                             <col style="background:#999999;">
