@@ -99,7 +99,7 @@ vDistributorPage = new Vue({
             p.CoordY = this.packCoords[1];
             p.Count = this.packDrugsCount;
             p.Price = this.packPrice;
-            isAddPack = false;
+            this.isAddPack = false;
             $.ajax({
                 url: "/Distributors/AddDrugPack/",
                 type: 'POST',

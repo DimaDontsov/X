@@ -82,6 +82,10 @@ namespace X.Controllers
         {
             if (!ModelState.IsValid)
             {
+                //if (drugSuplyOffer.Count < 0 || drugSuplyOffer.Count <= 1000000)
+                //{
+                //    ModelState.AddModelError("Count", "Количество товара должно быть от 0 до 1 млн.");                   
+                //}
                 return BadRequest(ModelState);
             }
             drugSuplyOffer.DeliveryTime = DateTime.Now;
